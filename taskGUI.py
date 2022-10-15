@@ -40,7 +40,7 @@ stopButton = tk.Button(
 stopButton.pack()
 stopButton.place(x=317, y=150)
 
-askTaskName = tk.Label(text="askName")
+askTaskName = tk.Label(text="Enter the name of the task below.")
 entry = tk.Entry()
 askTaskName.pack()
 entry.pack()
