@@ -1,11 +1,12 @@
 import tkinter as tk
+import time
 #Tkinter  tutorial link: https://realpython.com/python-gui-tkinter/
 
 window = tk.Tk()
 
 window.title("Timer") #Temporary Title
 
-window.geometry("500x300")
+window.geometry("800x600")
 
 greeting = tk.Label(text = "Press 'Start' to start logging time.")
 greeting.pack()
@@ -17,6 +18,10 @@ label = tk.Label(
 )
 label.pack()
 
+global startTime
+def setStartTime():
+    global startTime
+    startTime = time.time()
 
 startButton = tk.Button(
     text="Start Timer",
@@ -24,10 +29,14 @@ startButton = tk.Button(
     height=2,
     bg="green",
     fg="white",
-
+    command = setStartTime()
 )
 startButton.pack()
-startButton.place(relx=.2, rely=.5)
+startButton.place(relx=.3, rely=.5)
+
+def setEndTime():
+    endTime = time.time()
+    totalTime = startTime - endTime
 
 stopButton = tk.Button(
     text="Stop Timer",
@@ -58,7 +67,9 @@ submitButton = tk.Button(
     command = clearText
 )
 submitButton.pack()
-submitButton.place(relx=.4, rely=.3)
+
+submitButton.place(relx=.45, rely=.3)
+
 
 def addCurrentlyWorkingOn():
     currentlyWorkingOn = tk.Label(text = "Currently working on: " + taskName)
