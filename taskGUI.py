@@ -4,6 +4,8 @@ window = tk.Tk()
 
 window.title("Timer") #Temporary Title
 
+window.geometry("500x300")
+
 greeting = tk.Label(text = "Hello, Tkinter")
 greeting.pack()
 
@@ -20,8 +22,10 @@ startButton = tk.Button(
     height=2,
     bg="green",
     fg="white",
+
 )
 startButton.pack()
+startButton.place(x=100, y=100)
 
 stopButton = tk.Button(
     text="Stop Timer",
@@ -31,7 +35,7 @@ stopButton = tk.Button(
     fg="white",
 )
 stopButton.pack()
-
+stopButton.place(x=300, y=100)
 
 window.mainloop()
 
