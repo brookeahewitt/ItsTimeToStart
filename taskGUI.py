@@ -8,11 +8,11 @@ window.title("Timer") #Temporary Title
 
 window.geometry("800x600")
 
-greeting = tk.Label(text = "Press 'Start' to start logging time.")
+greeting = tk.Label(text = "Press 'Start Timer' to start logging time.")
 greeting.pack()
 
 label = tk.Label(
-    text="Press 'Stop' to stop logging time.",
+    text="Press 'Stop Timer' to stop logging time.",
     foreground="white",  # Set the text color to white
     background="black"  # Set the background color to black
 )
@@ -34,9 +34,17 @@ startButton = tk.Button(
 startButton.pack()
 startButton.place(relx=.3, rely=.5)
 
+global endTime
 def setEndTime():
+    global endTime
     endTime = time.time()
+
+def setTotalTime():
+    global startTime
+    global endTime
+    setEndTime()
     totalTime = startTime - endTime
+    print(totalTime)
 
 stopButton = tk.Button(
     text="Stop Timer",
@@ -44,7 +52,9 @@ stopButton = tk.Button(
     height=2,
     bg="red",
     fg="white",
+    command = setTotalTime(),
 )
+
 stopButton.pack()
 stopButton.place(relx = .6, rely=.5)
 
