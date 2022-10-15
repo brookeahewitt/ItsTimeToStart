@@ -12,5 +12,3 @@ class Task:
     def setEndTime(self, et):
         self.endTime = et
 
-    def getElapsedTime(self):
-        return self.endTime - self.startTime
