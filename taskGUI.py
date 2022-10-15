@@ -82,7 +82,7 @@ submitButton.place(relx=.45, rely=.3)
 def addCurrentlyWorkingOn():
     currentlyWorkingOn = tk.Label(text = "Currently working on: " + taskName)
     currentlyWorkingOn.pack()
-    currentlyWorkingOn.place(relx = .2, rely = .4)
+    currentlyWorkingOn.place(relx = .42, rely = .4)
 
 
 window.mainloop()
