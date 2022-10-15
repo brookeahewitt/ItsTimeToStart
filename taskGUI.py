@@ -38,4 +38,23 @@ stopButton = tk.Button(
 stopButton.pack()
 stopButton.place(x=300, y=100)
 
+askTaskName = tk.Label(text="askName")
+entry = tk.Entry()
+askTaskName.pack()
+entry.pack()
+
+taskName = entry.get()
+entry.delete(0, tk.END)
+
 window.mainloop()
+
+# tk = Tk()
+# frame = Frame(tk, borderwidth=2)
+# frame.pack(fill=BOTH, expand=1)
+# label = Label(frame, text="Button Example")
+# label.pack(fill=X, expand=1)
+#
+# button = Button(frame, text="Exit", command=tk.destroy)
+# button.pack(side=BOTTOM)
+# tk.mainloop()
+
