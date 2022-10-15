@@ -45,6 +45,7 @@ entry = tk.Entry()
 askTaskName.pack()
 entry.pack()
 def clearText():
+    global taskName
     taskName = entry.get()
     entry.delete(0, tk.END)
 
