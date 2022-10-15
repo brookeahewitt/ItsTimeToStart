@@ -6,15 +6,16 @@ window.title("Timer") #Temporary Title
 
 window.geometry("500x300")
 
-greeting = tk.Label(text = "Hello, Tkinter")
+greeting = tk.Label(text = "Press 'Start' to start logging time")
 greeting.pack()
 
 label = tk.Label(
-    text="Hello, Tkinter",
+    text="Press 'Stop' to stop logging time",
     foreground="white",  # Set the text color to white
     background="black"  # Set the background color to black
 )
 label.pack()
+
 
 startButton = tk.Button(
     text="Start Timer",
@@ -38,13 +39,3 @@ stopButton.pack()
 stopButton.place(x=300, y=100)
 
 window.mainloop()
-
-# tk = Tk()
-# frame = Frame(tk, borderwidth=2)
-# frame.pack(fill=BOTH, expand=1)
-# label = Label(frame, text="Button Example")
-# label.pack(fill=X, expand=1)
-#
-# button = Button(frame, text="Exit", command=tk.destroy)
-# button.pack(side=BOTTOM)
-# tk.mainloop()
