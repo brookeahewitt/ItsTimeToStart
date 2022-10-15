@@ -1,14 +1,17 @@
 import tkinter as tk
 import time
-#Tkinter  tutorial link: https://realpython.com/python-gui-tkinter/
+
+# Tkinter  tutorial link: https://realpython.com/python-gui-tkinter/
+
+
 
 window = tk.Tk()
 
-window.title("Timer") #Temporary Title
+window.title("Timer")  # Temporary Title
 
 window.geometry("800x600")
 
-greeting = tk.Label(text = "Press 'Start' to start logging time.")
+greeting = tk.Label(text="Press 'Start' to start logging time.")
 greeting.pack()
 
 label = tk.Label(
@@ -19,9 +22,12 @@ label = tk.Label(
 label.pack()
 
 global startTime
+
+
 def setStartTime():
     global startTime
     startTime = time.time()
+
 
 startButton = tk.Button(
     text="Start Timer",
@@ -29,14 +35,16 @@ startButton = tk.Button(
     height=2,
     bg="green",
     fg="white",
-    command = setStartTime()
+    command=setStartTime()
 )
 startButton.pack()
 startButton.place(relx=.3, rely=.5)
 
+
 def setEndTime():
     endTime = time.time()
     totalTime = startTime - endTime
+
 
 stopButton = tk.Button(
     text="Stop Timer",
@@ -46,25 +54,31 @@ stopButton = tk.Button(
     fg="white",
 )
 stopButton.pack()
-stopButton.place(relx = .6, rely=.5)
+stopButton.place(relx=.6, rely=.5)
 
 askTaskName = tk.Label(text="Enter the name of the task below.")
 entry = tk.Entry()
 askTaskName.pack()
 entry.pack()
+
+taskDict = {}
+
+
 def clearText():
     global taskName
     taskName = entry.get()
+    taskDict[entry.get()] = None
     entry.delete(0, tk.END)
     addCurrentlyWorkingOn()
 
+
 submitButton = tk.Button(
     text="Submit Task Name",
-    relwidth=.2,
-    relheight=.2,
+    width=14,
+    height=2,
     bg="blue",
     fg="white",
-    command = clearText
+    command=clearText
 )
 submitButton.pack()
 
@@ -72,12 +86,13 @@ submitButton.place(relx=.45, rely=.3)
 
 
 def addCurrentlyWorkingOn():
-    currentlyWorkingOn = tk.Label(text = "Currently working on: " + taskName)
+    currentlyWorkingOn = tk.Label(text="Currently working on: " + taskName)
     currentlyWorkingOn.pack()
-    currentlyWorkingOn.place(relx = .2, rely = .4)
+    currentlyWorkingOn.place(relx=.2, rely=.4)
 
 
 window.mainloop()
+print(taskDict)
 
 # tk = Tk()
 # frame = Frame(tk, borderwidth=2)
@@ -88,4 +103,3 @@ window.mainloop()
 # button = Button(frame, text="Exit", command=tk.destroy)
 # button.pack(side=BOTTOM)
 # tk.mainloop()
-
