@@ -1,16 +1,18 @@
 import tkinter as tk
 #Tkinter  tutorial link: https://realpython.com/python-gui-tkinter/
+global taskName
+
 window = tk.Tk()
 
 window.title("Timer") #Temporary Title
 
 window.geometry("500x300")
 
-greeting = tk.Label(text = "Hello, Tkinter")
+greeting = tk.Label(text = "Press 'Start' to start logging time.")
 greeting.pack()
 
 label = tk.Label(
-    text="Hello, Tkinter",
+    text="Press 'Stop' to stop logging time.",
     foreground="white",  # Set the text color to white
     background="black"  # Set the background color to black
 )
@@ -25,7 +27,7 @@ startButton = tk.Button(
 
 )
 startButton.pack()
-startButton.place(x=100, y=100)
+startButton.place(x=100, y=150)
 
 stopButton = tk.Button(
     text="Stop Timer",
@@ -35,15 +37,26 @@ stopButton = tk.Button(
     fg="white",
 )
 stopButton.pack()
-stopButton.place(x=300, y=100)
+stopButton.place(x=317, y=150)
 
 askTaskName = tk.Label(text="askName")
 entry = tk.Entry()
 askTaskName.pack()
 entry.pack()
+def clearText():
+    taskName = entry.get()
+    entry.delete(0, tk.END)
 
-taskName = entry.get()
-entry.delete(0, tk.END)
+submitButton = tk.Button(
+    text="Submit Task Name",
+    width=14,
+    height=2,
+    bg="blue",
+    fg="white",
+    command = clearText
+)
+submitButton.pack()
+submitButton.place(x=195, y=100)
 
 window.mainloop()
 
