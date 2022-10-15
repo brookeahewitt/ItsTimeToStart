@@ -45,8 +45,8 @@ def setEndTime():
     endTime = time.time()
     global totalTime
     totalTime = endTime - startTime
-    # displayOutput()
-    taskDict[taskName] = int(totalTime)
+    displayOutput()
+    taskDict[taskName] = time.strftime("%H:%M:%S", time.gmtime(totalTime))
 
 
 
