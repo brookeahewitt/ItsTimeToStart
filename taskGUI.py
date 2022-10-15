@@ -5,7 +5,7 @@ window = tk.Tk()
 
 window.title("Timer") #Temporary Title
 
-window.geometry("500x300")
+window.geometry("800x600")
 
 greeting = tk.Label(text = "Press 'Start' to start logging time.")
 greeting.pack()
@@ -24,10 +24,9 @@ startButton = tk.Button(
     height=2,
     bg="green",
     fg="white",
-
 )
 startButton.pack()
-startButton.place(x=100, y=150)
+startButton.place(x=250, y=150)
 
 stopButton = tk.Button(
     text="Stop Timer",
@@ -37,7 +36,7 @@ stopButton = tk.Button(
     fg="white",
 )
 stopButton.pack()
-stopButton.place(x=317, y=150)
+stopButton.place(x=517, y=150)
 
 askTaskName = tk.Label(text="Enter the name of the task below.")
 entry = tk.Entry()
@@ -58,7 +57,7 @@ submitButton = tk.Button(
     command = clearText
 )
 submitButton.pack()
-submitButton.place(x=195, y=100)
+submitButton.place(x=344, y=100)
 
 def addCurrentlyWorkingOn():
     currentlyWorkingOn = tk.Label(text = "Currently working on: " + taskName)
