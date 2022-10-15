@@ -46,10 +46,12 @@ def setEndTime():
     global totalTime
     totalTime = endTime - startTime
     displayOutput()
+    taskDict[taskName] = totalTime
 
 def displayOutput():
     print(taskName + "\t" + time.strftime('%H:%M:%S', time.localtime(startTime)) + "\t" + time.strftime("%H:%M:%S",
                                 time.localtime(endTime)) + "\t" + time.strftime("%H:%M:%S", time.localtime(totalTime)))
+
 
 
 
