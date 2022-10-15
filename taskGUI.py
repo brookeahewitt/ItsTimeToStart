@@ -76,6 +76,8 @@ stopButton.place(relx=.6, rely=.5)
 
 askTaskName = tk.Label(text="Enter the name of the task below.")
 entry = tk.Entry()
+
+
 askTaskName.pack()
 entry.pack()
 
@@ -85,6 +87,15 @@ taskDict = {}
 def clearText():
     global taskName
     taskName = entry.get()
+    if (taskName == "" or not taskName.strip()):
+        warningLabel = tk.Label(
+            text="(Please enter task)",
+            foreground="red",
+            background="white",
+        )
+        warningLabel.pack()
+        window.after(1500, warningLabel.destroy)
+
     taskDict[entry.get()] = None
     entry.delete(0, tk.END)
     addCurrentlyWorkingOn()
