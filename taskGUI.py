@@ -50,9 +50,7 @@ def setEndTime():
 
 def displayOutput():
     print(taskName + "\t" + time.strftime('%H:%M:%S', time.localtime(startTime)) + "\t" + time.strftime("%H:%M:%S",
-                                time.localtime(endTime)) + "\t" + time.strftime("%H:%M:%S", time.localtime(totalTime)))
-
-
+                                time.localtime(endTime)) + "\t" + time.strftime("%H:%M:%S", time.gmtime(totalTime)))
 
 
 stopButton = tk.Button(
