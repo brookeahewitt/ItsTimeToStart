@@ -27,7 +27,7 @@ startButton = tk.Button(
 
 )
 startButton.pack()
-startButton.place(x=100, y=150)
+startButton.place(relx=.2, rely=.5)
 
 stopButton = tk.Button(
     text="Stop Timer",
@@ -37,7 +37,7 @@ stopButton = tk.Button(
     fg="white",
 )
 stopButton.pack()
-stopButton.place(x=317, y=150)
+stopButton.place(relx = .6, rely=.5)
 
 askTaskName = tk.Label(text="Enter the name of the task below.")
 entry = tk.Entry()
@@ -58,12 +58,13 @@ submitButton = tk.Button(
     command = clearText
 )
 submitButton.pack()
-submitButton.place(x=195, y=100)
+submitButton.place(relx=.4, rely=.3)
 
 def addCurrentlyWorkingOn():
     currentlyWorkingOn = tk.Label(text = "Currently working on: " + taskName)
     currentlyWorkingOn.pack()
-    currentlyWorkingOn.place(250, 500)
+    currentlyWorkingOn.place(relx = .2, rely = .4)
+
 
 window.mainloop()
 
