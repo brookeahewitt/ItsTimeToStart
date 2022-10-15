@@ -1,6 +1,5 @@
 import tkinter as tk
 #Tkinter  tutorial link: https://realpython.com/python-gui-tkinter/
-global taskName
 
 window = tk.Tk()
 
@@ -45,8 +44,10 @@ entry = tk.Entry()
 askTaskName.pack()
 entry.pack()
 def clearText():
+    global taskName
     taskName = entry.get()
     entry.delete(0, tk.END)
+    addCurrentlyWorkingOn()
 
 submitButton = tk.Button(
     text="Submit Task Name",
@@ -58,6 +59,11 @@ submitButton = tk.Button(
 )
 submitButton.pack()
 submitButton.place(x=195, y=100)
+
+def addCurrentlyWorkingOn():
+    currentlyWorkingOn = tk.Label(text = "Currently working on: " + taskName)
+    currentlyWorkingOn.pack()
+    #currentlyWorkingOn.place(250,500)
 
 window.mainloop()
 
