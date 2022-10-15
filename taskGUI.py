@@ -1,4 +1,5 @@
 import tkinter as tk
+#Tkinter  tutorial link: https://realpython.com/python-gui-tkinter/
 window = tk.Tk()
 
 greeting = tk.Label(text = "Hello, Tkinter")
