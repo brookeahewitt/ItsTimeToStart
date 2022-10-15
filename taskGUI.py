@@ -51,8 +51,8 @@ def clearText():
 
 submitButton = tk.Button(
     text="Submit Task Name",
-    width=14,
-    height=2,
+    relwidth=.2,
+    relheight=.2,
     bg="blue",
     fg="white",
     command = clearText
