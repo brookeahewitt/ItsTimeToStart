@@ -18,7 +18,6 @@ label = tk.Label(
 )
 label.pack()
 
-global startTime
 def setStartTime():
     global startTime
     startTime = time.time()
@@ -29,7 +28,7 @@ startButton = tk.Button(
     height=2,
     bg="green",
     fg="white",
-    command = setStartTime()
+    command = setStartTime
 )
 startButton.pack()
 startButton.place(relx=.3, rely=.5)
@@ -38,13 +37,16 @@ global endTime
 def setEndTime():
     global endTime
     endTime = time.time()
+    global totalTime
+    totalTime = endTime - startTime
+    displayOutput()
 
-def setTotalTime():
-    global startTime
-    global endTime
-    setEndTime()
-    totalTime = startTime - endTime
-    print(totalTime)
+
+def displayOutput():
+    print(taskName + "\t" + time.strftime('%H:%M:%S', time.localtime(startTime)) + "\t" + time.strftime("%H:%M:%S",
+                                time.localtime(endTime)) + "\t" + time.strftime("%H:%M:%S", time.localtime(totalTime)))
+
+
 
 stopButton = tk.Button(
     text="Stop Timer",
@@ -52,7 +54,8 @@ stopButton = tk.Button(
     height=2,
     bg="red",
     fg="white",
-    command = setTotalTime(),
+    command = setEndTime
+
 )
 
 stopButton.pack()
