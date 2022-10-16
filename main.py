@@ -12,7 +12,7 @@ import numpy as np
 
 window = tk.Tk()
 
-window.title("Timer")  # Temporary Title
+window.title("It's Time to Start!")
 window.geometry("800x600")
 window.config(bg="white")
 
