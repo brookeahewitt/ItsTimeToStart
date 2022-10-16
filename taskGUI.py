@@ -81,7 +81,8 @@ taskMinsGoal = 0
 global taskHoursGoal
 taskHoursGoal = 0
 
-
+global goalIndex
+goalIndex = 0.4
 
 def setGoals():
     goalWindow = tk.Toplevel(window)
@@ -100,6 +101,13 @@ def setGoals():
     label3 = tk.Label(goalWindow,text=" : ",bg="white").place(relx=.64,rely=.2)
     hoursEntry = tk.Entry(goalWindow)
     hoursEntry.place(relx=.66,rely=.2,width=30)
+    taskDetailsName = tk.Label(goalWindow, text="Name: ", background="white")
+    taskDetailsName.pack()
+    taskDetailsName.place(relx=0.15, rely=goalIndex)
+
+    taskDetailsTime = tk.Label(goalWindow, text="Goal Time: ", background="white")
+    taskDetailsTime.pack()
+    taskDetailsTime.place(relx=0.35, rely=goalIndex)
 
 
 
@@ -127,20 +135,11 @@ def setGoals():
             # minsGoalLabel
             # hoursGoalLabel
             global goalIndex
-            goalIndex = 0.68
-
-            taskDetailsName = tk.Label(goalWindow,text="Name: ", background="white")
-            taskDetailsName.pack()
-            taskDetailsName.place(relx=0.15, rely=goalIndex)
-
-            taskDetailsTime = tk.Label(goalWindow,text="Goal Time: ", background="white")
-            taskDetailsTime.pack()
-            taskDetailsTime.place(relx=0.35, rely=goalIndex)
 
             goalIndex = goalIndex + 0.053
 
-            goalName = nameOfGoalTasks
-            goalTime = str(secondsGoal) + ":" + str(minsGoal) + ":" + str(hoursGoal)
+            goalName = taskNameGoal
+            goalTime = taskSecsGoal + ":" + taskMinsGoal + ":" + taskHoursGoal
 
             taskName = tk.Label(goalWindow,text=goalName, background="white")
             taskName.pack()
