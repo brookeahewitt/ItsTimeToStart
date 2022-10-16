@@ -115,7 +115,8 @@ submitButton.place(relx=.45, rely=.3)
 
 
 def addCurrentlyWorkingOn():
-    currentlyWorkingOn = tk.Label(text="Currently working on: " + taskName)
+    if(not(taskName == "" or not taskName.strip())):
+        currentlyWorkingOn = tk.Label(text="Currently working on: " + taskName)
     currentlyWorkingOn.pack()
     currentlyWorkingOn.place(relx = .42, rely = .4)
 
