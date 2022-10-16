@@ -111,7 +111,6 @@ def setEndTime():
         timerStartedFalseLabel.pack()
         timerStartedFalseLabel.place(relx=.575, rely=.58)
         window.after(1500, timerStartedFalseLabel.destroy)
-        print("You haven't started the timer yet.")
     displayOutput()
     taskDict[taskName] = time.strftime("%H:%M:%S", time.gmtime(totalTime))
     timerStarted = False
@@ -151,15 +150,26 @@ global pause
 pause = 0
 def pauseTime():
     global pause
-    if pause == 0:
-        pause = 1
-        changeButtonName("Resume Timer")
-        pauseTime(1)
+    global timerStarted
+    if timerStarted == 0:
+        timerStartedFalseLabel = tk.Label(
+            text="(Please start timer first)",
+            foreground="red",
+            background="white",
+        )
+        timerStartedFalseLabel.pack()
+        timerStartedFalseLabel.place(relx=.42, rely=.58)
+        window.after(1500, timerStartedFalseLabel.destroy)
     else:
-        pause = 0
-        changeButtonName("Pause Timer")
-        pauseTime(0)
-    tick()
+        if pause == 0:
+            pause = 1
+            changeButtonName("Resume Timer")
+            pauseTime(1)
+        else:
+            pause = 0
+            changeButtonName("Pause Timer")
+            pauseTime(0)
+        tick()
 
 pauseButton = tk.Button(
     text="Pause Timer",
