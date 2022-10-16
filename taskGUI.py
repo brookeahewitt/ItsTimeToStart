@@ -132,6 +132,8 @@ pauseBeginning = 0
 pauseEnd = 0
 pauseTimeDuration = 0
 
+global taskName
+taskName = ""
 
 def setStartTime():
     global timerStarted
@@ -192,13 +194,53 @@ def setEndTime():
     doTick = 0
     endValues.append(endTime)
 
+global y
+y = 0.68
 
+taskDetailsN = tk.Label(text="Name:", background="white")
+taskDetailsN.pack()
+taskDetailsN.place(relx=0.15, rely=y)
+
+taskDetailsST = tk.Label(text="Start Time:", background="white")
+taskDetailsST.pack()
+taskDetailsST.place(relx=0.35, rely=y)
+
+taskDetailsET = tk.Label(text="End Time:", background="white")
+taskDetailsET.pack()
+taskDetailsET.place(relx=0.55, rely=y)
+
+taskDetailsTT = tk.Label(text="Total Time:", background="white")
+taskDetailsTT.pack()
+taskDetailsTT.place(relx=0.75, rely=y)
 def displayOutput():
     # print(taskName + "\t" + time.strftime('%H:%M:%S', time.localtime(startTime)) + "\t" + time.strftime("%H:%M:%S",
     # time.localtime(endTime)) + "\t" + time.strftime("%H:%M:%S", time.gmtime(totalTime)))
+    global y
+    y = y + 0.053
     minutes = totalTime / 60
     hours = minutes / 60
     elapsedTimeTotal.append(minutes)
+    for i in range(0, len(nameOfTasks)):
+        name = nameOfTasks[i]
+        start = time.strftime("%H:%M:%S", time.localtime(startTime))
+        end = time.strftime("%H:%M:%S", time.localtime(endTime))
+        allTime = time.strftime("%H:%M:%S", time.gmtime(totalTime))
+
+        taskN = tk.Label(text=name, background="white")
+        taskN.pack()
+        taskN.place(relx=0.15, rely=y)
+
+        taskST = tk.Label(text=start, background="white")
+        taskST.pack()
+        taskST.place(relx=0.35, rely=y)
+
+        taskET = tk.Label(text=end, background="white")
+        taskET.pack()
+        taskET.place(relx=0.55, rely=y)
+
+        taskTT = tk.Label(text=allTime, background="white")
+        taskTT.pack()
+        taskTT.place(relx=0.75, rely=y)
 
 
 stopButton = tk.Button(
@@ -290,7 +332,7 @@ def clearText():
 time1 = ''
 clock = tk.Label(window, font=('times', 20, 'bold'), bg='white')
 clock.pack()
-clock.place(relx=.328, rely=.7)
+clock.place(relx=.328, rely=.6)
 
 
 def pauseTime(ispaused):
