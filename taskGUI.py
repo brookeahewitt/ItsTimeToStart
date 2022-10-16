@@ -119,6 +119,7 @@ def setGoals():
         secondsEntry.delete(0,tk.END)
         minsEntry.delete(0,tk.END)
         hoursEntry.delete(0,tk.END)
+        listGoals()
 
     enterButton = tk.Button(goalWindow, text="Enter", command=clearTextForOtherWindow).place(relx=.4, rely=.3,
                                                                                                  width=70)
@@ -143,7 +144,7 @@ def listGoals():
     goalIndex = goalIndex + 0.053
 
     goalName = nameOfGoalTasks
-    goalTime = str(hoursGoal + ":" + minsGoal +":" + secondsGoal)
+    goalTime = str(str(hoursGoal) + ":" + str(minsGoal) +":" + str(secondsGoal))
 
     taskName= tk.Label(text=goalName, background="white")
     taskName.pack()
