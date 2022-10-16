@@ -54,9 +54,6 @@ def setEndTime():
     global timerStarted
     endTime = time.time()
     global totalTime
-    totalTime = endTime - startTime
-    displayOutput()
-    taskDict[taskName] = time.strftime("%H:%M:%S", time.gmtime(totalTime))
     if timerStarted == 0:
         timerStartedFalseLabel = tk.Label(
             text="(Please start timer first)",
@@ -64,9 +61,12 @@ def setEndTime():
             background="white",
         )
         timerStartedFalseLabel.pack()
-        timerStartedFalseLabel.place(relx=.6, rely=.55)
+        timerStartedFalseLabel.place(relx=.575, rely=.58)
         window.after(1500, timerStartedFalseLabel.destroy)
         print("You haven't started the timer yet.")
+    totalTime = endTime - startTime
+    displayOutput()
+    taskDict[taskName] = time.strftime("%H:%M:%S", time.gmtime(totalTime))
     timerStarted = False
 
 
