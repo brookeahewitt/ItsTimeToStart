@@ -278,7 +278,7 @@ def tick():
 
 submitButton = tk.Button(
     text="Submit Task Name",
-    width=14,
+    width=16,
     height=2,
     bg="blue",
     fg="white",
