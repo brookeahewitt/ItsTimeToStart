@@ -22,12 +22,14 @@ label = tk.Label(
 )
 label.pack()
 
-timerStarted = False
+global startTime
+global timerStarted
+timerStarted = 0
 
 def setStartTime():
     global timerStarted
     global startTime
-    timerStarted = True
+    timerStarted = 1
     startTime = time.time()
     tick()
 
@@ -50,33 +52,27 @@ global endTime
 
 def setEndTime():
     global endTime
+    global timerStarted
     endTime = time.time()
     global totalTime
+    if timerStarted == 0:
+        timerStartedFalseLabel = tk.Label(
+            text="(Please start timer first)",
+            foreground="red",
+            background="white",
+        )
+        timerStartedFalseLabel.pack()
+        timerStartedFalseLabel.place(relx=.575, rely=.58)
+        window.after(1500, timerStartedFalseLabel.destroy)
+        print("You haven't started the timer yet.")
     totalTime = endTime - startTime
     displayOutput()
     taskDict[taskName] = time.strftime("%H:%M:%S", time.gmtime(totalTime))
-
-onMin = True
-
-def swapMinHours():
-    global onMin
-    onMin = not onMin
-
-timePresentationButton = tk.Button(
-    text="View Min/Hours",
-    width=12,
-    height=2,
-    bg="purple",
-    fg="white",
-    command = swapMinHours()
-)
-timePresentationButton.pack()
-timePresentationButton.place(relx=.44, rely=.8)
+    timerStarted = False
 
 
 
 def displayOutput():
-    global onMin
     print(taskName + "\t" + time.strftime('%H:%M:%S', time.localtime(startTime)) + "\t" + time.strftime("%H:%M:%S",
                                 time.localtime(endTime)) + "\t" + time.strftime("%H:%M:%S", time.gmtime(totalTime)))
     minutes = totalTime / 60
