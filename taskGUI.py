@@ -58,7 +58,16 @@ label.pack()
 
 global startTime
 global timerStarted
+global doTick
 timerStarted = 0
+doTick = 1
+
+global pauseBeginning
+global pauseEnd
+global pauseTimeDuration
+pauseBeginning = 0
+pauseEnd = 0
+pauseTimeDuration = 0
 
 def setStartTime():
     global timerStarted
@@ -77,7 +86,7 @@ startButton = tk.Button(
     height=2,
     bg="green",
     fg="white",
-    command = setStartTime
+    command=setStartTime
 
 )
 startButton.pack()
@@ -85,13 +94,14 @@ startButton.place(relx=.3, rely=.5)
 
 
 global endTime
+global totalTime
+totalTime = 0
 
 def setEndTime():
     global endTime
     global timerStarted
     global doTick
     endTime = time.time()
-    global totalTime
     if timerStarted == 0:
         timerStartedFalseLabel = tk.Label(
             text="(Please start timer first)",
@@ -102,7 +112,6 @@ def setEndTime():
         timerStartedFalseLabel.place(relx=.575, rely=.58)
         window.after(1500, timerStartedFalseLabel.destroy)
         print("You haven't started the timer yet.")
-    totalTime = endTime - startTime
     displayOutput()
     taskDict[taskName] = time.strftime("%H:%M:%S", time.gmtime(totalTime))
     timerStarted = False
@@ -111,8 +120,8 @@ def setEndTime():
 
 
 def displayOutput():
-    print(taskName + "\t" + time.strftime('%H:%M:%S', time.localtime(startTime)) + "\t" + time.strftime("%H:%M:%S",
-                                time.localtime(endTime)) + "\t" + time.strftime("%H:%M:%S", time.gmtime(totalTime)))
+    #print(taskName + "\t" + time.strftime('%H:%M:%S', time.localtime(startTime)) + "\t" + time.strftime("%H:%M:%S",
+                                #time.localtime(endTime)) + "\t" + time.strftime("%H:%M:%S", time.gmtime(totalTime)))
     minutes = totalTime / 60
     hours = minutes / 60
     totalTimeLabel = tk.Label(
@@ -131,12 +140,41 @@ stopButton = tk.Button(
     height=2,
     bg="red",
     fg="white",
-    command = setEndTime
+    command=setEndTime
 
 )
 
 stopButton.pack()
 stopButton.place(relx=.6, rely=.5)
+
+global pause
+pause = 0
+def pauseTime():
+    global pause
+    if pause == 0:
+        pause = 1
+        changeButtonName("Resume Timer")
+        pauseTime(1)
+    else:
+        pause = 0
+        changeButtonName("Pause Timer")
+        pauseTime(0)
+    tick()
+
+pauseButton = tk.Button(
+    text="Pause Timer",
+    width=10,
+    height=2,
+    bg="gold3",
+    fg="white",
+    command=pauseTime
+)
+
+pauseButton.pack()
+pauseButton.place(relx=.448, rely=.5)
+
+def changeButtonName(name):
+    pauseButton['text'] = name
 
 askTaskName = tk.Label(text="Enter the name of the task below.", bg = "white")
 entry = tk.Entry()
@@ -171,21 +209,31 @@ clock = tk.Label(window, font=('times', 20, 'bold'), bg='white')
 clock.pack()
 clock.place(relx=.44, rely=.8)
 
-doTick = 1
+def pauseTime(ispaused):
+    global pauseBeginning
+    global pauseEnd
+    global pauseTimeDuration
+    if ispaused == 1:
+        pauseBeginning = time.time()
+    else:
+        pauseEnd = time.time()
+        pauseTimeDuration = pauseTimeDuration + pauseEnd - pauseBeginning
 
 def tick():
-    #global time1
+    global totalTime
     # get the current local time from the PC
     if doTick != 1:
         return
     time2 = time.time()
-    #time2 = time.strftime('%H:%M:%S')
+    if pause == 1:
+        return
     # if time string has changed, update it
     if time2 != startTime:
         #time1 = time2
-        time3 = time2-startTime
+        time3 = time2-startTime-pauseTimeDuration
         time4 = time.strftime("%H:%M:%S", time.gmtime(time3))
         clock.config(text=time4)
+        totalTime = time3
     # calls itself every 200 milliseconds
     # to update the time display as needed
     # could use >200 ms, but display gets jerky
@@ -203,7 +251,7 @@ submitButton = tk.Button(
 )
 submitButton.pack()
 
-submitButton.place(relx=.45, rely=.3)
+submitButton.place(relx=.43, rely=.3)
 
 
 def addCurrentlyWorkingOn():
