@@ -42,10 +42,11 @@ def bargraph():
              }
     df1 = DataFrame(data1, columns=['Task', 'Time in Minutes'])
     root = tk.Tk()
+    root.title("Time Task Bar Graph")  # Temporary Title
     figure1 = plt.Figure(figsize=(6, 5), dpi=100)
     ax1 = figure1.add_subplot(111)
     bar1 = FigureCanvasTkAgg(figure1, root)
-    bar1.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH)
+    bar1.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand = True)
     df1 = df1[['Task', 'Time in Minutes']].groupby('Task').sum()
     df1.plot(kind='bar', legend=True, ax=ax1)
     ax1.set_title('Time Spent Per Task')
@@ -83,6 +84,7 @@ optionsmenu.add_separator()
 optionsmenu.add_command(label="Exit Program", command=window.quit)
 
 menubar.add_cascade(label="Menu", menu=optionsmenu)
+
 window.config(menu=menubar)
 # Menu Code - End
 
@@ -164,6 +166,7 @@ def setEndTime():
         window.after(1500, timerStartedFalseLabel.destroy)
     displayOutput()
     taskDict[taskName] = time.strftime("%H:%M:%S", time.gmtime(totalTime))
+    print(taskDict)
     timerStarted = False
     doTick = 0
     endValues.append(endTime)
