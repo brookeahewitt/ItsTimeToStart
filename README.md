@@ -3,4 +3,4 @@
 Authors:
 Hayley Davis,
 Brooke Hewitt,
-Ashley Whitehouse,
+Ashley Whitehouse
