@@ -70,6 +70,7 @@ def setStartTime():
     global startTime
     timerStarted = 1
     startTime = time.time()
+    tick()
 
 
 
@@ -169,24 +170,23 @@ def clearText():
 time1 = ''
 clock = tk.Label(window, font=('times', 20, 'bold'), bg='white')
 clock.pack()
-
+clock.place(relx=.44, rely=.8)
 
 def tick():
-    global time1
+    #global time1
     # get the current local time from the PC
-    time2 = time.strftime('%H:%M:%S')
+    time2 = time.time()
+    #time2 = time.strftime('%H:%M:%S')
     # if time string has changed, update it
-    if time2 != time1:
-        time1 = time2
-        clock.config(text=time2)
+    if time2 != startTime:
+        #time1 = time2
+        time3 = time2-startTime
+        time4 = time.strftime("%H:%M:%S", time.gmtime(time3))
+        clock.config(text=time4)
     # calls itself every 200 milliseconds
     # to update the time display as needed
     # could use >200 ms, but display gets jerky
-    clock.after(200, tick)
-
-
-tick()
-
+    clock.after(1000, tick)
 #Clock Code - end
 
 
