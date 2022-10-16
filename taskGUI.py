@@ -128,7 +128,8 @@ def clearText():
     entry.delete(0, tk.END)
     addCurrentlyWorkingOn()
 
-
+# Clock Code - start
+# https://bytes.com/topic/python/answers/629499-dynamically-displaying-time-using-tkinter-label - source
 time1 = ''
 clock = tk.Label(window, font=('times', 20, 'bold'), bg='white')
 clock.pack()
@@ -149,6 +150,9 @@ def tick():
 
 
 tick()
+
+#Clock Code - end
+
 
 submitButton = tk.Button(
     text="Submit Task Name",
