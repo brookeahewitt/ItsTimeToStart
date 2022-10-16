@@ -43,6 +43,15 @@ minsGoal = []
 global hoursGoal
 hoursGoal = []
 
+global nameOfLimit
+nameOfLimit = []
+global secondsLimit
+secondsLimit = []
+global minsLimit
+minsLimit = []
+global hoursLimit
+hoursLimit = []
+
 
 # source: https://datatofish.com/matplotlib-charts-tkinter-gui/
 def bargraph():
@@ -108,14 +117,33 @@ def setLimits():
     goalWindow.title("Set Limits")
     goalWindow.config(bg="white")
     label1 = tk.Label(goalWindow,text="Enter task name: ", bg="white").place(relx=.05,rely=.2)
-    taskEntry = tk.Entry(goalWindow).place(relx=.2,rely=.2)
+    taskEntry = tk.Entry(goalWindow)
+    taskEntry.place(relx=.2,rely=.2)
     label2 = tk.Label(goalWindow,text="Enter time limit: ", bg= "white").place(relx=.4,rely=.2)
-    secondsEntry = tk.Entry(goalWindow).place(relx=.55,rely=.2,width= 30)
+    secondsEntry = tk.Entry(goalWindow)
+    secondsEntry.place(relx=.55,rely=.2,width= 30)
     label3 = tk.Label(goalWindow,text=" : ",bg="white").place(relx=.59,rely=.2)
-    minsEntry = tk.Entry(goalWindow).place(relx=.61,rely=.2,width=30)
+    minsEntry = tk.Entry(goalWindow)
+    minsEntry.place(relx=.61,rely=.2,width=30)
     label3 = tk.Label(goalWindow,text=" : ",bg="white").place(relx=.64,rely=.2)
-    hoursEntry = tk.Entry(goalWindow).place(relx=.66,rely=.2,width=30)
-    enterButton = tk.Button(goalWindow, text="Enter").place(relx=.4, rely=.3, width=70)
+    hoursEntry = tk.Entry(goalWindow)
+    hoursEntry.place(relx=.66,rely=.2,width=30)
+
+    def clearTextForOtherWindow():
+        taskNameGoal = taskEntry.get()
+        taskSecsGoal = secondsEntry.get()
+        taskMinsGoal = minsEntry.get()
+        taskHoursGoal = hoursEntry.get()
+        nameOfLimit.append(taskNameGoal)
+        secondsLimit.append(taskSecsGoal)
+        minsLimit.append(taskMinsGoal)
+        hoursLimit.append(taskHoursGoal)
+        taskEntry.delete(0, tk.END)
+        secondsEntry.delete(0,tk.END)
+        minsEntry.delete(0,tk.END)
+        hoursEntry.delete(0,tk.END)
+
+    enterButton = tk.Button(goalWindow, text="Enter", command=clearTextForOtherWindow).place(relx=.4, rely=.3, width=70)
 
 
 menubar = tk.Menu(window)
