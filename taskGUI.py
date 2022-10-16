@@ -97,11 +97,21 @@ pauseTimeDuration = 0
 def setStartTime():
     global timerStarted
     global startTime
-    timerStarted = 1
-    startTime = time.time()
-    tick()
-    global doTick
-    doTick = 1
+    global taskName
+    if (taskName == "" or not taskName.strip()):
+        warningLabel = tk.Label(
+            text="(Please enter task)",
+            foreground="red",
+            background="white",
+        )
+        warningLabel.pack()
+        window.after(1500, warningLabel.destroy)
+    else:
+        timerStarted = 1
+        startTime = time.time()
+        tick()
+        global doTick
+        doTick = 1
 
 
 
