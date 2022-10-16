@@ -1,6 +1,10 @@
 import tkinter as tk
 import datetime as dt
 import time
+from pandas import DataFrame
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import numpy as np
 
 # Tkinter  tutorial link: https://realpython.com/python-gui-tkinter/
 
@@ -71,6 +75,8 @@ def setStartTime():
     timerStarted = 1
     startTime = time.time()
     tick()
+    global doTick
+    doTick = 1
 
 
 
@@ -92,6 +98,7 @@ global endTime
 def setEndTime():
     global endTime
     global timerStarted
+    global doTick
     endTime = time.time()
     global totalTime
     if timerStarted == 0:
@@ -108,6 +115,7 @@ def setEndTime():
     displayOutput()
     taskDict[taskName] = time.strftime("%H:%M:%S", time.gmtime(totalTime))
     timerStarted = False
+    doTick = 0
 
 
 
@@ -172,9 +180,13 @@ clock = tk.Label(window, font=('times', 20, 'bold'), bg='white')
 clock.pack()
 clock.place(relx=.44, rely=.8)
 
+doTick = 1
+
 def tick():
     #global time1
     # get the current local time from the PC
+    if doTick != 1:
+        return
     time2 = time.time()
     #time2 = time.strftime('%H:%M:%S')
     # if time string has changed, update it
@@ -209,9 +221,31 @@ def addCurrentlyWorkingOn():
     currentlyWorkingOn.pack()
     currentlyWorkingOn.place(relx = .42, rely = .4)
 
+taskKeyList = []
+minutesValueList = []
+for key in taskDict:
+    taskKeyList.append(key)
+
+data1 = {'Task': taskKeyList,
+         'Time in Minutes': minutesValueList
+         }
+
+# df1 = DataFrame(data1, columns=['Task', 'Time in Minutes'])
+#
+# root = tk.Tk()
+
+# figure1 = plt.Figure(figsize=(6, 5), dpi=100)
+# ax1 = figure1.add_subplot(111)
+# bar1 = FigureCanvasTkAgg(figure1, root)
+# bar1.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH)
+# df1 = df1[['Task', 'Time in Minutes']].groupby('Task').sum()
+# df1.plot(kind='bar', legend=True, ax=ax1)
+# ax1.set_title('Time Spent Per Task')
 
 window.mainloop()
 print(taskDict)
+print(taskKeyList)
+print(data1)
 
 # tk = Tk()
 # frame = Frame(tk, borderwidth=2)
