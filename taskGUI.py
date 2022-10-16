@@ -32,6 +32,8 @@ def setStartTime():
     timerStarted = 1
     startTime = time.time()
     tick()
+    global doTick
+    doTick = 1
 
 
 
@@ -53,6 +55,7 @@ global endTime
 def setEndTime():
     global endTime
     global timerStarted
+    global doTick
     endTime = time.time()
     global totalTime
     if timerStarted == 0:
@@ -69,6 +72,7 @@ def setEndTime():
     displayOutput()
     taskDict[taskName] = time.strftime("%H:%M:%S", time.gmtime(totalTime))
     timerStarted = False
+    doTick = 0
 
 
 
@@ -133,9 +137,13 @@ clock = tk.Label(window, font=('times', 20, 'bold'), bg='white')
 clock.pack()
 clock.place(relx=.44, rely=.8)
 
+doTick = 1
+
 def tick():
     #global time1
     # get the current local time from the PC
+    if doTick != 1:
+        return
     time2 = time.time()
     #time2 = time.strftime('%H:%M:%S')
     # if time string has changed, update it
