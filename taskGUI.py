@@ -98,7 +98,16 @@ def setGoals():
         hoursEntry.delete(0,tk.END)
 
 
-    enterButton = tk.Button(goalWindow,text="Enter",command=clearTextForOtherWindow).place(relx=.4,rely=.3,width=70)
+def listGoals():
+    global goalWindow
+    nameOfGoalTasksLabel = tk.Label(goalWindow,text="Enter", place(relx=.4,rely=.3,width=70)
+    secondsGoalLabel
+    minsGoalLabel
+    hoursGoalLabel
+
+
+
+enterButton = tk.Button(goalWindow,text="Enter",command=clearTextForOtherWindow).place(relx=.4,rely=.3,width=70)
 
 
 
@@ -116,6 +125,8 @@ def setLimits():
     label3 = tk.Label(goalWindow,text=" : ",bg="white").place(relx=.64,rely=.2)
     hoursEntry = tk.Entry(goalWindow).place(relx=.66,rely=.2,width=30)
     enterButton = tk.Button(goalWindow, text="Enter").place(relx=.4, rely=.3, width=70)
+
+
 
 
 menubar = tk.Menu(window)
