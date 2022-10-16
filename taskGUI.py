@@ -55,13 +55,13 @@ def bargraph():
 def setGoals():
     goalWindow = tk.Toplevel(window)
     goalWindow.geometry("800x600")
+    goalWindow.title("Set Goals")
     goalWindow.config(bg="white")
-    secondsEntry = goalWindow.Entry()
-    secondsEntry.pack()
-    minsEntry = goalWindow.Entry()
-    minsEntry.pack()
-    hoursEntry = goalWindow.Entry()
-    hoursEntry.pack()
+    tk.Label(goalWindow, text="New window").pack()
+    secondsEntry = tk.Entry(goalWindow).pack()
+    minsEntry = tk.Entry(goalWindow).pack()
+    hoursEntry = tk.Entry(goalWindow).pack()
+
 
 
 menubar = tk.Menu(window)
