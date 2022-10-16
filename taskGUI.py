@@ -82,6 +82,7 @@ global taskHoursGoal
 taskHoursGoal = 0
 
 
+
 def setGoals():
     goalWindow = tk.Toplevel(window)
     goalWindow.geometry("800x600")
@@ -119,7 +120,6 @@ def setGoals():
         secondsEntry.delete(0,tk.END)
         minsEntry.delete(0,tk.END)
         hoursEntry.delete(0,tk.END)
-        listGoals()
 
         def listGoals():
             # nameOfGoalTasksLabel
@@ -129,24 +129,24 @@ def setGoals():
             global goalIndex
             goalIndex = 0.68
 
-            taskDetailsName = tk.Label(goalWindow, text="Name: ", background="white")
+            taskDetailsName = tk.Label(goalWindow,text="Name: ", background="white")
             taskDetailsName.pack()
             taskDetailsName.place(relx=0.15, rely=goalIndex)
 
-            taskDetailsTime = tk.Label(goalWindow, text="Goal Time: ", background="white")
+            taskDetailsTime = tk.Label(goalWindow,text="Goal Time: ", background="white")
             taskDetailsTime.pack()
             taskDetailsTime.place(relx=0.35, rely=goalIndex)
 
             goalIndex = goalIndex + 0.053
 
             goalName = nameOfGoalTasks
-            goalTime = str(hoursGoal + ":" + minsGoal + ":" + secondsGoal)
+            goalTime = str(secondsGoal) + ":" + str(minsGoal) + ":" + str(hoursGoal)
 
-            taskName = tk.Label(goalWindow, text=goalName, background="white")
+            taskName = tk.Label(goalWindow,text=goalName, background="white")
             taskName.pack()
             taskName.place(relx=0.15, rely=goalIndex)
 
-            taskGT = tk.Label(goalWindow, text=goalTime, background="white")
+            taskGT = tk.Label(goalWindow,text=goalTime, background="white")
             taskGT.pack()
             taskGT.place(relx=0.35, rely=goalIndex)
 
@@ -161,53 +161,13 @@ def setGoals():
             # taskDetailsTT = tk.Label(text="Total Time:", background="white")
             # taskDetailsTT.pack()
             # taskDetailsTT.place(relx=0.75, rely=y)
+
         listGoals()
 
     enterButton = tk.Button(goalWindow, text="Enter", command=clearTextForOtherWindow).place(relx=.4, rely=.3,
                                                                                                  width=70)
 
 
-
-def listGoals():
-    # nameOfGoalTasksLabel
-    # secondsGoalLabel
-    # minsGoalLabel
-    # hoursGoalLabel
-    global goalIndex
-    goalIndex = 0.68
-
-    taskDetailsName = tk.Label(text="Name: ", background="white")
-    taskDetailsName.pack()
-    taskDetailsName.place(relx=0.15, rely=goalIndex)
-
-    taskDetailsTime = tk.Label(text="Goal Time: ", background="white")
-    taskDetailsTime.pack()
-    taskDetailsTime.place(relx=0.35, rely=goalIndex)
-
-    goalIndex = goalIndex + 0.053
-
-    goalName = nameOfGoalTasks
-    goalTime = str(str(hoursGoal) + ":" + str(minsGoal) +":" + str(secondsGoal))
-
-    taskName= tk.Label(text=goalName, background="white")
-    taskName.pack()
-    taskName.place(relx=0.15, rely=goalIndex)
-
-    taskGT = tk.Label(text=goalTime, background="white")
-    taskGT.pack()
-    taskGT.place(relx=0.35, rely=goalIndex)
-
-    # taskDetailsST = tk.Label(text="Goal: ", background="white")
-    # taskDetailsST.pack()
-    # taskDetailsST.place(relx=0.35, rely=y)
-    #
-    # taskDetailsET = tk.Label(text="End Time:", background="white")
-    # taskDetailsET.pack()
-    # taskDetailsET.place(relx=0.55, rely=y)
-    #
-    # taskDetailsTT = tk.Label(text="Total Time:", background="white")
-    # taskDetailsTT.pack()
-    # taskDetailsTT.place(relx=0.75, rely=y)
 
 
 
