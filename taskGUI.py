@@ -143,6 +143,7 @@ def setEndTime():
         window.after(1500, timerStartedFalseLabel.destroy)
     displayOutput()
     taskDict[taskName] = time.strftime("%H:%M:%S", time.gmtime(totalTime))
+    print(taskDict)
     timerStarted = False
     doTick = 0
 
