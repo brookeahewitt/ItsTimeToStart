@@ -117,7 +117,6 @@ startButton = tk.Button(
 startButton.pack()
 startButton.place(relx=.3, rely=.5)
 
-
 global endTime
 global totalTime
 totalTime = 0
@@ -253,6 +252,19 @@ def pauseTime(ispaused):
     else:
         pauseEnd = time.time()
         pauseTimeDuration = pauseTimeDuration + pauseEnd - pauseBeginning
+global showTimer
+showTimer = 1
+def print_selection():
+    global showTimer
+    if var1.get() == 1:
+        showTimer = 0
+    else:
+        showTimer = 1
+
+var1 = tk.IntVar()
+dontShowTimer = tk.Checkbutton(window, text="Don't show timer", variable=var1, onvalue=1, offvalue=0,
+                               command=print_selection)
+dontShowTimer.pack()
 
 def tick():
     global totalTime
@@ -267,7 +279,10 @@ def tick():
         #time1 = time2
         time3 = time2-startTime-pauseTimeDuration
         time4 = time.strftime("%H:%M:%S", time.gmtime(time3))
-        clock.config(text=time4)
+        if showTimer == 1:
+            clock.config(text=time4)
+        else:
+            clock.config(text="")
         totalTime = time3
     # calls itself every 200 milliseconds
     # to update the time display as needed
@@ -294,6 +309,7 @@ def addCurrentlyWorkingOn():
         currentlyWorkingOn = tk.Label(text="Currently working on: " + taskName, bg = "white")
     currentlyWorkingOn.pack()
     currentlyWorkingOn.place(relx = .42, rely = .4)
+
 
 taskKeyList = []
 minutesValueList = []
