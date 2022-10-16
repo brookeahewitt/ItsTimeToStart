@@ -1,6 +1,7 @@
 import tkinter as tk
 import datetime as dt
 import time
+#Import pandas and matplotlib to use code.
 from pandas import DataFrame
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
