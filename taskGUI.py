@@ -8,7 +8,7 @@ import numpy as np
 
 # Tkinter  tutorial link: https://realpython.com/python-gui-tkinter/
 # Tkinter checkbox link: https://pythonbasics.org/tkinter-checkbox/
-import graph
+
 
 window = tk.Tk()
 
@@ -44,22 +44,7 @@ def bargraph():
 
     #root.mainloop()
 
-def piechart():
-    root = tk.Tk()
 
-    def prop(n):
-        return 360.0 * n / 1000
-
-    tk.Label(root, text='Pie Chart').pack()
-    c = tk.Canvas(width=154, height=154)
-    c.pack()
-    c.create_arc((2, 2, 152, 152), fill="#FAF402", outline="#FAF402", start=prop(0), extent=prop(200))
-    c.create_arc((2, 2, 152, 152), fill="#2BFFF4", outline="#2BFFF4", start=prop(200), extent=prop(400))
-    c.create_arc((2, 2, 152, 152), fill="#E00022", outline="#E00022", start=prop(600), extent=prop(50))
-    c.create_arc((2, 2, 152, 152), fill="#7A0871", outline="#7A0871", start=prop(650), extent=prop(200))
-    c.create_arc((2, 2, 152, 152), fill="#294994", outline="#294994", start=prop(850), extent=prop(150))
-
-    root.mainloop()
 
 
 
@@ -70,7 +55,7 @@ sub_menu.add_command(label='Make Goals', command = donothing)
 sub_menu.add_command(label='Analyze Goals', command = donothing)
 
 
-optionsmenu.add_command(label="Task Time Bar Graph", command = donothing)
+optionsmenu.add_command(label="Task Time Bar Graph", command = bargraph)
 
 optionsmenu.add_cascade(
     label="Task Time Goals",
