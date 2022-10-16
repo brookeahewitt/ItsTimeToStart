@@ -24,10 +24,18 @@ def donothing(): #Placeholder Function
    button = tk.Button(filewin, text="Do nothing button")
    button.pack()
 
+global nameOfTasks
+nameOfTasks = []
+global startValues
+startValues = []
+global endValues
+endValues = []
+global elapsedTimeTotal
+elapsedTimeTotal = []
 
 def bargraph():
-    data1 = {'Task': ['US', 'CA', 'GER', 'UK', 'FR'],
-         'Time in Minutes': [45000, 42000, 52000, 49000, 47000]
+    data1 = {'Task': nameOfTasks,
+         'Time in Minutes': elapsedTimeTotal
          }
     df1 = DataFrame(data1, columns=['Task', 'Time in Minutes'])
     root = tk.Tk()
@@ -108,6 +116,7 @@ def setStartTime():
         tick()
         global doTick
         doTick = 1
+        startValues.append(startTime)
 
 
 
@@ -146,6 +155,7 @@ def setEndTime():
     print(taskDict)
     timerStarted = False
     doTick = 0
+    endValues.append(endTime)
 
 
 
@@ -162,6 +172,7 @@ def displayOutput():
     )
     totalTimeLabel.pack()
     totalTimeLabel.place(relx=.44, rely=.7)
+    elapsedTimeTotal.append(minutes)
 
 
 stopButton = tk.Button(
@@ -239,7 +250,7 @@ def clearText():
         warningLabel.pack()
         window.after(1500, warningLabel.destroy)
 
-    taskDict[entry.get()] = None
+    nameOfTasks.append(taskName)
     entry.delete(0, tk.END)
     addCurrentlyWorkingOn()
 
