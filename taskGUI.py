@@ -20,7 +20,7 @@ def donothing():
    button.pack()
 
 menubar = tk.Menu(window)
-filemenu = tk.Menu(menubar, tearoff=0)
+filemenu = tk.Menu(menubar, tearoff=1)
 filemenu.add_command(label="New", command=donothing)
 filemenu.add_command(label="Open", command=donothing)
 filemenu.add_command(label="Save", command=donothing)
