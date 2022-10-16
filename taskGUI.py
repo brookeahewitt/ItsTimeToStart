@@ -70,6 +70,7 @@ def setGoals():
     hoursEntry = tk.Entry(goalWindow).place(relx=.66,rely=.2,width=30)
 
 
+
 def setLimits():
     goalWindow = tk.Toplevel(window)
     goalWindow.geometry("800x600")
@@ -199,7 +200,7 @@ def displayOutput():
     hours = minutes / 60
     totalTimeLabel = tk.Label(
         # text = "Elapsed time: " + str(round(minutes, 2)) + " minutes.",
-        text="Elapsed time: " + time.strftime("%H:%M:%S", time.gmtime(totalTime)),
+        #text="Elapsed time: " + time.strftime("%H:%M:%S", time.gmtime(totalTime)),
         foreground="black",
         background="white"
     )
@@ -297,7 +298,7 @@ def clearText():
 time1 = ''
 clock = tk.Label(window, font=('times', 20, 'bold'), bg='white')
 clock.pack()
-clock.place(relx=.44, rely=.8)
+clock.place(relx=.328, rely=.7)
 
 
 def pauseTime(ispaused):
@@ -341,7 +342,7 @@ def tick():
     if time2 != startTime:
         # time1 = time2
         time3 = time2 - startTime - pauseTimeDuration
-        time4 = time.strftime("%H:%M:%S", time.gmtime(time3))
+        time4 = time.strftime("Elapsed Time: %H:%M:%S", time.gmtime(time3))
         if showTimer == 1:
             clock.config(text=time4)
         else:
