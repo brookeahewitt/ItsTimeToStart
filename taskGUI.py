@@ -7,7 +7,7 @@ import time
 # import numpy as np
 
 # Tkinter  tutorial link: https://realpython.com/python-gui-tkinter/
-
+# Tkinter checkbox link: https://pythonbasics.org/tkinter-checkbox/
 
 
 window = tk.Tk()
