@@ -1,14 +1,14 @@
 import tkinter as tk
 import datetime as dt
 import time
-# from pandas import DataFrame
-# import matplotlib.pyplot as plt
-# from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-# import numpy as np
+from pandas import DataFrame
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import numpy as np
 
 # Tkinter  tutorial link: https://realpython.com/python-gui-tkinter/
 # Tkinter checkbox link: https://pythonbasics.org/tkinter-checkbox/
-
+import graph
 
 window = tk.Tk()
 
@@ -24,11 +24,36 @@ def donothing(): #Placeholder Function
    button = tk.Button(filewin, text="Do nothing button")
    button.pack()
 
+
+def bargraph():
+    data1 = {'Task': ['US', 'CA', 'GER', 'UK', 'FR'],
+         'Time in Minutes': [45000, 42000, 52000, 49000, 47000]
+         }
+    df1 = DataFrame(data1, columns=['Task', 'Time in Minutes'])
+    root = tk.Tk()
+    figure1 = plt.Figure(figsize=(6, 5), dpi=100)
+    ax1 = figure1.add_subplot(111)
+    bar1 = FigureCanvasTkAgg(figure1, root)
+    bar1.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH)
+    df1 = df1[['Task', 'Time in Minutes']].groupby('Task').sum()
+    df1.plot(kind='bar', legend=True, ax=ax1)
+    ax1.set_title('Time Spent Per Task')
+    #root.mainloop()
+
+def piechart():
+    def piechart():
+        minutes = np.array([35, 25, 25, 15])
+        completedtasks = ["Apples", "Bananas", "Cherries", "Dates"]
+
+        plt.pie(minutes, labels=completedtasks)
+        plt.show()
+
+
 menubar = tk.Menu(window)
 optionsmenu = tk.Menu(menubar, tearoff=0)
 sub_menu = tk.Menu(optionsmenu, tearoff=0)
-sub_menu.add_command(label='Pie Graph', command = donothing)
-sub_menu.add_command(label='Bar Graph', command = donothing)
+sub_menu.add_command(label='Pie Graph', command = piechart)
+sub_menu.add_command(label='Bar Graph', command = bargraph)
 
 optionsmenu.add_cascade(
     label="Task Time Graphs",
