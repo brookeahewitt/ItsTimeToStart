@@ -249,7 +249,6 @@ def setEndTime():
         window.after(1500, timerStartedFalseLabel.destroy)
     displayOutput()
     taskDict[taskName] = time.strftime("%H:%M:%S", time.gmtime(totalTime))
-    print(taskDict)
     timerStarted = False
     doTick = 0
     endValues.append(endTime)
@@ -499,9 +498,7 @@ data1 = {'Task': taskKeyList,
 # ax1.set_title('Time Spent Per Task')
 
 window.mainloop()
-print(taskDict)
-print(taskKeyList)
-print(data1)
+
 
 # tk = Tk()
 # frame = Frame(tk, borderwidth=2)
