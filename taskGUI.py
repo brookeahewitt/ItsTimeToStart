@@ -134,11 +134,11 @@ def listGoals():
 
     taskDetailsName = tk.Label(text="Name: ", background="white")
     taskDetailsName.pack()
-    taskDetailsName.place(relx=0.15, rely=y)
+    taskDetailsName.place(relx=0.15, rely=goalIndex)
 
     taskDetailsTime = tk.Label(text="Goal Time: ", background="white")
     taskDetailsTime.pack()
-    taskDetailsTime.place(relx=0.35, rely=y)
+    taskDetailsTime.place(relx=0.35, rely=goalIndex)
 
     goalIndex = goalIndex + 0.053
 
@@ -147,11 +147,11 @@ def listGoals():
 
     taskName= tk.Label(text=goalName, background="white")
     taskName.pack()
-    taskName.place(relx=0.15, rely=y)
+    taskName.place(relx=0.15, rely=goalIndex)
 
     taskGT = tk.Label(text=goalTime, background="white")
     taskGT.pack()
-    taskGT.place(relx=0.35, rely=y)
+    taskGT.place(relx=0.35, rely=goalIndex)
 
     # taskDetailsST = tk.Label(text="Goal: ", background="white")
     # taskDetailsST.pack()
