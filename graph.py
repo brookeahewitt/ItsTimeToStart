@@ -1,18 +1,33 @@
+import numpy
 from pandas import DataFrame
 import tkinter as tk
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.figure import Figure
 import numpy as np
 
-def piechart() :
-    minutes = np.array([35, 25, 25, 15])
-    completedtasks = ["Apples", "Bananas", "Cherries", "Dates"]
 
-    plt.pie(minutes, labels = completedtasks)
-    plt.show()
+
+
+def piechart():
+    root = tk.Tk()
+
+    def prop(n):
+        return 360.0 * n / 1000
+
+    tk.Label(root, text='Pie Chart').pack()
+    c = tk.Canvas(width=154, height=154)
+    c.pack()
+    c.create_arc((2, 2, 152, 152), fill="#FAF402", outline="#FAF402", start=prop(0), extent=prop(200))
+    c.create_arc((2, 2, 152, 152), fill="#2BFFF4", outline="#2BFFF4", start=prop(200), extent=prop(400))
+    c.create_arc((2, 2, 152, 152), fill="#E00022", outline="#E00022", start=prop(600), extent=prop(50))
+    c.create_arc((2, 2, 152, 152), fill="#7A0871", outline="#7A0871", start=prop(650), extent=prop(200))
+    c.create_arc((2, 2, 152, 152), fill="#294994", outline="#294994", start=prop(850), extent=prop(150))
+
+    root.mainloop()
+
 
 piechart()
-
 
 def bargraph():
     data1 = {'Task': ['US', 'CA', 'GER', 'UK', 'FR'],
@@ -30,4 +45,4 @@ def bargraph():
     ax1.set_title('Time Spent Per Task')
     root.mainloop()
 
-bargraph()
+
