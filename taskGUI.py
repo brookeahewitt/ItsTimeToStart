@@ -201,7 +201,7 @@ def pauseTime():
 
 pauseButton = tk.Button(
     text="Pause Timer",
-    width=10,
+    width=12,
     height=2,
     bg="gold3",
     fg="white",
