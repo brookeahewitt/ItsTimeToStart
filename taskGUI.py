@@ -50,15 +50,38 @@ def setEndTime():
     displayOutput()
     taskDict[taskName] = time.strftime("%H:%M:%S", time.gmtime(totalTime))
 
+onMin = True
 
+def swapMinHours():
+    global onMin
+    onMin = not onMin
 
-
+timePresentationButton = tk.Button(
+    text="View Min/Hours",
+    width=12,
+    height=2,
+    bg="purple",
+    fg="white",
+    command = swapMinHours()
+)
+timePresentationButton.pack()
+timePresentationButton.place(relx=.44, rely=.8)
 
 
 
 def displayOutput():
+    global onMin
     print(taskName + "\t" + time.strftime('%H:%M:%S', time.localtime(startTime)) + "\t" + time.strftime("%H:%M:%S",
                                 time.localtime(endTime)) + "\t" + time.strftime("%H:%M:%S", time.gmtime(totalTime)))
+    minutes = totalTime / 60
+    hours = minutes / 60
+    totalTimeLabel = tk.Label(
+        text = "Elapsed time: " + str(round(minutes, 2)) + " minutes.",
+        foreground="black",
+        background="white"
+    )
+    totalTimeLabel.pack()
+    totalTimeLabel.place(relx=.44, rely=.7)
 
 
 stopButton = tk.Button(
@@ -119,7 +142,6 @@ def addCurrentlyWorkingOn():
         currentlyWorkingOn = tk.Label(text="Currently working on: " + taskName)
     currentlyWorkingOn.pack()
     currentlyWorkingOn.place(relx = .42, rely = .4)
-
 
 
 window.mainloop()
