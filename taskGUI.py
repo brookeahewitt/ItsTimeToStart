@@ -215,14 +215,6 @@ def displayOutput():
     # time.localtime(endTime)) + "\t" + time.strftime("%H:%M:%S", time.gmtime(totalTime)))
     minutes = totalTime / 60
     hours = minutes / 60
-    totalTimeLabel = tk.Label(
-        # text = "Elapsed time: " + str(round(minutes, 2)) + " minutes.",
-        #text="Elapsed time: " + time.strftime("%H:%M:%S", time.gmtime(totalTime)),
-        foreground="black",
-        background="white"
-    )
-    totalTimeLabel.pack()
-    totalTimeLabel.place(relx=.44, rely=.7)
     elapsedTimeTotal.append(minutes)
 
 
@@ -382,6 +374,7 @@ submitButton = tk.Button(
     fg="white",
     command=clearText
 )
+
 submitButton.pack()
 
 submitButton.place(relx=.43, rely=.3)
