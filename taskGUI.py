@@ -14,15 +14,17 @@ window = tk.Tk()
 
 window.title("Timer")  # Temporary Title
 window.geometry("800x600")
-window.config(bg = "white")
+window.config(bg="white")
 
-#Menu Code - Start
+
+# Menu Code - Start
 # - https://www.tutorialspoint.com/python/tk_menu.htm - menus
 # - https://www.pythontutorial.net/tkinter/tkinter-menu/ - submenus
-def donothing(): #Placeholder Function
-   filewin = tk.Toplevel(window)
-   button = tk.Button(filewin, text="Do nothing button")
-   button.pack()
+def donothing():  # Placeholder Function
+    filewin = tk.Toplevel(window)
+    button = tk.Button(filewin, text="Do nothing button")
+    button.pack()
+
 
 global nameOfTasks
 nameOfTasks = []
@@ -33,10 +35,11 @@ endValues = []
 global elapsedTimeTotal
 elapsedTimeTotal = []
 
+#source: https://datatofish.com/matplotlib-charts-tkinter-gui/
 def bargraph():
     data1 = {'Task': nameOfTasks,
-         'Time in Minutes': elapsedTimeTotal
-         }
+             'Time in Minutes': elapsedTimeTotal
+             }
     df1 = DataFrame(data1, columns=['Task', 'Time in Minutes'])
     root = tk.Tk()
     root.title("Time Task Bar Graph")  # Temporary Title
@@ -48,19 +51,28 @@ def bargraph():
     df1.plot(kind='bar', legend=True, ax=ax1)
     ax1.set_title('Time Spent Per Task')
 
+    # root.mainloop()
 
+def setGoals():
+    goalWindow = tk.Toplevel(window)
+    goalWindow.geometry("800x600")
+    goalWindow.config(bg="white")
+    secondsEntry = goalWindow.Entry()
+    secondsEntry.pack()
+    minsEntry = goalWindow.Entry()
+    minsEntry.pack()
+    hoursEntry = goalWindow.Entry()
+    hoursEntry.pack()
 
-
-    #root.mainloop()
 
 menubar = tk.Menu(window)
 optionsmenu = tk.Menu(menubar, tearoff=0)
 sub_menu = tk.Menu(optionsmenu, tearoff=0)
-sub_menu.add_command(label='Make Goals', command = donothing)
-sub_menu.add_command(label='Analyze Goals', command = donothing)
+sub_menu.add_command(label='Set Goals', command=setGoals)
+sub_menu.add_command(label='Set Limits', command=donothing)
+sub_menu.add_command(label='Analyze Goals', command=donothing)
 
-
-optionsmenu.add_command(label="Task Time Bar Graph", command = bargraph)
+optionsmenu.add_command(label="Task Time Bar Graph", command=bargraph)
 
 optionsmenu.add_cascade(
     label="Task Time Goals",
@@ -71,13 +83,12 @@ optionsmenu.add_separator()
 
 optionsmenu.add_command(label="Exit Program", command=window.quit)
 
-
 menubar.add_cascade(label="Menu", menu=optionsmenu)
 
 window.config(menu=menubar)
-#Menu Code - End
+# Menu Code - End
 
-greeting = tk.Label(text = "Press 'Start Timer' to start logging time.", bg = "white")
+greeting = tk.Label(text="Press 'Start Timer' to start logging time.", bg="white")
 greeting.pack()
 
 label = tk.Label(
@@ -100,6 +111,7 @@ pauseBeginning = 0
 pauseEnd = 0
 pauseTimeDuration = 0
 
+
 def setStartTime():
     global timerStarted
     global startTime
@@ -121,7 +133,6 @@ def setStartTime():
         startValues.append(startTime)
 
 
-
 startButton = tk.Button(
     text="Start Timer",
     width=10,
@@ -137,6 +148,7 @@ startButton.place(relx=.3, rely=.5)
 global endTime
 global totalTime
 totalTime = 0
+
 
 def setEndTime():
     global endTime
@@ -160,15 +172,14 @@ def setEndTime():
     endValues.append(endTime)
 
 
-
 def displayOutput():
-    #print(taskName + "\t" + time.strftime('%H:%M:%S', time.localtime(startTime)) + "\t" + time.strftime("%H:%M:%S",
-                                #time.localtime(endTime)) + "\t" + time.strftime("%H:%M:%S", time.gmtime(totalTime)))
+    # print(taskName + "\t" + time.strftime('%H:%M:%S', time.localtime(startTime)) + "\t" + time.strftime("%H:%M:%S",
+    # time.localtime(endTime)) + "\t" + time.strftime("%H:%M:%S", time.gmtime(totalTime)))
     minutes = totalTime / 60
     hours = minutes / 60
     totalTimeLabel = tk.Label(
-        #text = "Elapsed time: " + str(round(minutes, 2)) + " minutes.",
-        text = "Elapsed time: " + time.strftime("%H:%M:%S", time.gmtime(totalTime)),
+        # text = "Elapsed time: " + str(round(minutes, 2)) + " minutes.",
+        text="Elapsed time: " + time.strftime("%H:%M:%S", time.gmtime(totalTime)),
         foreground="black",
         background="white"
     )
@@ -192,6 +203,8 @@ stopButton.place(relx=.6, rely=.5)
 
 global pause
 pause = 0
+
+
 def pauseTime():
     global pause
     global timerStarted
@@ -215,6 +228,7 @@ def pauseTime():
             pauseTime(0)
         tick()
 
+
 pauseButton = tk.Button(
     text="Pause Timer",
     width=12,
@@ -227,12 +241,13 @@ pauseButton = tk.Button(
 pauseButton.pack()
 pauseButton.place(relx=.448, rely=.5)
 
+
 def changeButtonName(name):
     pauseButton['text'] = name
 
-askTaskName = tk.Label(text="Enter the name of the task below.", bg = "white")
-entry = tk.Entry()
 
+askTaskName = tk.Label(text="Enter the name of the task below.", bg="white")
+entry = tk.Entry()
 
 askTaskName.pack()
 entry.pack()
@@ -256,12 +271,14 @@ def clearText():
     entry.delete(0, tk.END)
     addCurrentlyWorkingOn()
 
+
 # Clock Code - start
 # https://bytes.com/topic/python/answers/629499-dynamically-displaying-time-using-tkinter-label - source
 time1 = ''
 clock = tk.Label(window, font=('times', 20, 'bold'), bg='white')
 clock.pack()
 clock.place(relx=.44, rely=.8)
+
 
 def pauseTime(ispaused):
     global pauseBeginning
@@ -272,8 +289,12 @@ def pauseTime(ispaused):
     else:
         pauseEnd = time.time()
         pauseTimeDuration = pauseTimeDuration + pauseEnd - pauseBeginning
+
+
 global showTimer
 showTimer = 1
+
+
 def print_selection():
     global showTimer
     if var1.get() == 1:
@@ -281,10 +302,12 @@ def print_selection():
     else:
         showTimer = 1
 
+
 var1 = tk.IntVar()
 dontShowTimer = tk.Checkbutton(window, text="Don't show timer", variable=var1, onvalue=1, offvalue=0,
                                command=print_selection)
 dontShowTimer.pack()
+
 
 def tick():
     global totalTime
@@ -296,8 +319,8 @@ def tick():
         return
     # if time string has changed, update it
     if time2 != startTime:
-        #time1 = time2
-        time3 = time2-startTime-pauseTimeDuration
+        # time1 = time2
+        time3 = time2 - startTime - pauseTimeDuration
         time4 = time.strftime("%H:%M:%S", time.gmtime(time3))
         if showTimer == 1:
             clock.config(text=time4)
@@ -308,7 +331,9 @@ def tick():
     # to update the time display as needed
     # could use >200 ms, but display gets jerky
     clock.after(1000, tick)
-#Clock Code - end
+
+
+# Clock Code - end
 
 
 submitButton = tk.Button(
@@ -324,14 +349,16 @@ submitButton.pack()
 submitButton.place(relx=.43, rely=.3)
 
 global currentlyWorkingOn
-currentlyWorkingOn = tk.Label(text="", bg = "white")
+currentlyWorkingOn = tk.Label(text="", bg="white")
+
+
 def addCurrentlyWorkingOn():
     global currentlyWorkingOn
     currentlyWorkingOn.destroy()
-    if(not(taskName == "" or not taskName.strip())):
-        currentlyWorkingOn = tk.Label(text="Currently working on: " + taskName, bg = "white")
+    if (not (taskName == "" or not taskName.strip())):
+        currentlyWorkingOn = tk.Label(text="Currently working on: " + taskName, bg="white")
     currentlyWorkingOn.pack()
-    currentlyWorkingOn.place(relx = .42, rely = .4)
+    currentlyWorkingOn.place(relx=.42, rely=.4)
 
 
 taskKeyList = []
