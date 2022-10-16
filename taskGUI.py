@@ -106,17 +106,52 @@ def setGoals():
         minsEntry.delete(0,tk.END)
         hoursEntry.delete(0,tk.END)
 
+    enterButton = tk.Button(goalWindow, text="Enter", command=clearTextForOtherWindow).place(relx=.4, rely=.3,
+                                                                                                 width=70)
+
 
 def listGoals():
-    global goalWindow
-    nameOfGoalTasksLabel = tk.Label(goalWindow,text="Enter", place(relx=.4,rely=.3,width=70)
-    secondsGoalLabel
-    minsGoalLabel
-    hoursGoalLabel
+    # nameOfGoalTasksLabel
+    # secondsGoalLabel
+    # minsGoalLabel
+    # hoursGoalLabel
+    global goalIndex
+    goalIndex = 0.68
+
+    taskDetailsName = tk.Label(text="Name: ", background="white")
+    taskDetailsName.pack()
+    taskDetailsName.place(relx=0.15, rely=y)
+
+    taskDetailsTime = tk.Label(text="Goal Time: ", background="white")
+    taskDetailsTime.pack()
+    taskDetailsTime.place(relx=0.35, rely=y)
+
+    goalIndex = goalIndex + 0.053
+
+    goalName = nameOfGoalTasks
+    goalTime = str(hoursGoal + ":" + minsGoal +":" + secondsGoal)
+
+    taskName= tk.Label(text=goalName, background="white")
+    taskName.pack()
+    taskName.place(relx=0.15, rely=y)
+
+    taskGT = tk.Label(text=goalTime, background="white")
+    taskGT.pack()
+    taskGT.place(relx=0.35, rely=y)
+
+    # taskDetailsST = tk.Label(text="Goal: ", background="white")
+    # taskDetailsST.pack()
+    # taskDetailsST.place(relx=0.35, rely=y)
+    #
+    # taskDetailsET = tk.Label(text="End Time:", background="white")
+    # taskDetailsET.pack()
+    # taskDetailsET.place(relx=0.55, rely=y)
+    #
+    # taskDetailsTT = tk.Label(text="Total Time:", background="white")
+    # taskDetailsTT.pack()
+    # taskDetailsTT.place(relx=0.75, rely=y)
 
 
-
-enterButton = tk.Button(goalWindow,text="Enter",command=clearTextForOtherWindow).place(relx=.4,rely=.3,width=70)
 
 
 
@@ -291,27 +326,26 @@ def displayOutput():
     minutes = totalTime / 60
     hours = minutes / 60
     elapsedTimeTotal.append(minutes)
-    for i in range(0, len(nameOfTasks)):
-        name = nameOfTasks[i]
-        start = time.strftime("%H:%M:%S", time.localtime(startTime))
-        end = time.strftime("%H:%M:%S", time.localtime(endTime))
-        allTime = time.strftime("%H:%M:%S", time.gmtime(totalTime))
+    name = taskName
+    start = time.strftime("%H:%M:%S", time.localtime(startTime))
+    end = time.strftime("%H:%M:%S", time.localtime(endTime))
+    allTime = time.strftime("%H:%M:%S", time.gmtime(totalTime))
 
-        taskN = tk.Label(text=name, background="white")
-        taskN.pack()
-        taskN.place(relx=0.15, rely=y)
+    taskN = tk.Label(text=name, background="white")
+    taskN.pack()
+    taskN.place(relx=0.15, rely=y)
 
-        taskST = tk.Label(text=start, background="white")
-        taskST.pack()
-        taskST.place(relx=0.35, rely=y)
+    taskST = tk.Label(text=start, background="white")
+    taskST.pack()
+    taskST.place(relx=0.35, rely=y)
 
-        taskET = tk.Label(text=end, background="white")
-        taskET.pack()
-        taskET.place(relx=0.55, rely=y)
+    taskET = tk.Label(text=end, background="white")
+    taskET.pack()
+    taskET.place(relx=0.55, rely=y)
 
-        taskTT = tk.Label(text=allTime, background="white")
-        taskTT.pack()
-        taskTT.place(relx=0.75, rely=y)
+    taskTT = tk.Label(text=allTime, background="white")
+    taskTT.pack()
+    taskTT.place(relx=0.75, rely=y)
 
 
 stopButton = tk.Button(
