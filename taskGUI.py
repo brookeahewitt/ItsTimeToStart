@@ -8,7 +8,7 @@ import numpy as np
 
 # Tkinter  tutorial link: https://realpython.com/python-gui-tkinter/
 # Tkinter checkbox link: https://pythonbasics.org/tkinter-checkbox/
-import graph
+
 
 window = tk.Tk()
 
@@ -44,7 +44,6 @@ def bargraph():
 
     #root.mainloop()
 
-
 menubar = tk.Menu(window)
 optionsmenu = tk.Menu(menubar, tearoff=0)
 sub_menu = tk.Menu(optionsmenu, tearoff=0)
@@ -52,7 +51,7 @@ sub_menu.add_command(label='Make Goals', command = donothing)
 sub_menu.add_command(label='Analyze Goals', command = donothing)
 
 
-optionsmenu.add_command(label="Task Time Bar Graph", command = donothing)
+optionsmenu.add_command(label="Task Time Bar Graph", command = bargraph)
 
 optionsmenu.add_cascade(
     label="Task Time Goals",
