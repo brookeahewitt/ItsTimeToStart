@@ -34,6 +34,14 @@ global endValues
 endValues = []
 global elapsedTimeTotal
 elapsedTimeTotal = []
+global nameOfGoalTasks
+nameOfGoalTasks = []
+global secondsGoal
+secondsGoal = []
+global minsGoal
+minsGoal = []
+global hoursGoal
+hoursGoal = []
 
 
 # source: https://datatofish.com/matplotlib-charts-tkinter-gui/
@@ -54,20 +62,7 @@ def bargraph():
 
     # root.mainloop()
 
-def clearTextForOtherWindow():
-    global taskNameGoal
-    taskNameGoal = entry.get()
-    if (taskNameGoal == "" or not taskNameGoal.strip()):
-        warningLabel = tk.Label(
-            text="(Please enter task)",
-            foreground="red",
-            background="white",
-        )
-        warningLabel.pack()
-        window.after(1500, warningLabel.destroy)
 
-    #nameOfTasks.append(taskName)
-    entry.delete(0, tk.END)
 
 
 def setGoals():
@@ -76,13 +71,33 @@ def setGoals():
     goalWindow.title("Set Goals")
     goalWindow.config(bg="white")
     label1 = tk.Label(goalWindow,text="Enter task name: ", bg="white").place(relx=.05,rely=.2)
-    taskEntry = tk.Entry(goalWindow).place(relx=.2,rely=.2)
+    taskEntry = tk.Entry(goalWindow)
+    taskEntry.place(relx=.2,rely=.2)
     label2 = tk.Label(goalWindow,text="Enter time goal: ", bg= "white").place(relx=.4,rely=.2)
-    secondsEntry = tk.Entry(goalWindow).place(relx=.55,rely=.2,width= 30)
+    secondsEntry = tk.Entry(goalWindow)
+    secondsEntry.place(relx=.55,rely=.2,width= 30)
     label3 = tk.Label(goalWindow,text=" : ",bg="white").place(relx=.59,rely=.2)
-    minsEntry = tk.Entry(goalWindow).place(relx=.61,rely=.2,width=30)
+    minsEntry = tk.Entry(goalWindow)
+    minsEntry.place(relx=.61,rely=.2,width=30)
     label3 = tk.Label(goalWindow,text=" : ",bg="white").place(relx=.64,rely=.2)
-    hoursEntry = tk.Entry(goalWindow).place(relx=.66,rely=.2,width=30)
+    hoursEntry = tk.Entry(goalWindow)
+    hoursEntry.place(relx=.66,rely=.2,width=30)
+
+    def clearTextForOtherWindow():
+        taskNameGoal = taskEntry.get()
+        taskSecsGoal = secondsEntry.get()
+        taskMinsGoal = minsEntry.get()
+        taskHoursGoal = hoursEntry.get()
+        nameOfGoalTasks.append(taskNameGoal)
+        secondsGoal.append(taskSecsGoal)
+        minsGoal.append(taskMinsGoal)
+        hoursGoal.append(taskHoursGoal)
+        taskEntry.delete(0, tk.END)
+        secondsEntry.delete(0,tk.END)
+        minsEntry.delete(0,tk.END)
+        hoursEntry.delete(0,tk.END)
+
+
     enterButton = tk.Button(goalWindow,text="Enter",command=clearTextForOtherWindow).place(relx=.4,rely=.3,width=70)
 
 
