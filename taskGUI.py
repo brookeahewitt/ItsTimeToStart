@@ -30,7 +30,6 @@ def bargraph():
          'Time in Minutes': [45000, 42000, 52000, 49000, 47000]
          }
     df1 = DataFrame(data1, columns=['Task', 'Time in Minutes'])
-
     root = tk.Tk()
     figure1 = plt.Figure(figsize=(6, 5), dpi=100)
     ax1 = figure1.add_subplot(111)
@@ -41,10 +40,19 @@ def bargraph():
     ax1.set_title('Time Spent Per Task')
     #root.mainloop()
 
+def piechart():
+    def piechart():
+        minutes = np.array([35, 25, 25, 15])
+        completedtasks = ["Apples", "Bananas", "Cherries", "Dates"]
+
+        plt.pie(minutes, labels=completedtasks)
+        plt.show()
+
+
 menubar = tk.Menu(window)
 optionsmenu = tk.Menu(menubar, tearoff=0)
 sub_menu = tk.Menu(optionsmenu, tearoff=0)
-sub_menu.add_command(label='Pie Graph', command = donothing)
+sub_menu.add_command(label='Pie Graph', command = piechart)
 sub_menu.add_command(label='Bar Graph', command = bargraph)
 
 optionsmenu.add_cascade(
