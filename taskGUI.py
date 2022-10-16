@@ -44,24 +44,6 @@ def bargraph():
 
     #root.mainloop()
 
-def piechart():
-    root = tk.Tk()
-
-    def prop(n):
-        return 360.0 * n / 1000
-
-    tk.Label(root, text='Pie Chart').pack()
-    c = tk.Canvas(width=154, height=154)
-    c.pack()
-    c.create_arc((2, 2, 152, 152), fill="#FAF402", outline="#FAF402", start=prop(0), extent=prop(200))
-    c.create_arc((2, 2, 152, 152), fill="#2BFFF4", outline="#2BFFF4", start=prop(200), extent=prop(400))
-    c.create_arc((2, 2, 152, 152), fill="#E00022", outline="#E00022", start=prop(600), extent=prop(50))
-    c.create_arc((2, 2, 152, 152), fill="#7A0871", outline="#7A0871", start=prop(650), extent=prop(200))
-    c.create_arc((2, 2, 152, 152), fill="#294994", outline="#294994", start=prop(850), extent=prop(150))
-
-    root.mainloop()
-
-
 
 menubar = tk.Menu(window)
 optionsmenu = tk.Menu(menubar, tearoff=0)
