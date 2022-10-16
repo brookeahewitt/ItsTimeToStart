@@ -43,6 +43,15 @@ minsGoal = []
 global hoursGoal
 hoursGoal = []
 
+global nameOfLimit
+nameOfLimit = []
+global secondsLimit
+secondsLimit = []
+global minsLimit
+minsLimit = []
+global hoursLimit
+hoursLimit = []
+
 
 # source: https://datatofish.com/matplotlib-charts-tkinter-gui/
 def bargraph():
@@ -117,14 +126,33 @@ def setLimits():
     goalWindow.title("Set Limits")
     goalWindow.config(bg="white")
     label1 = tk.Label(goalWindow,text="Enter task name: ", bg="white").place(relx=.05,rely=.2)
-    taskEntry = tk.Entry(goalWindow).place(relx=.2,rely=.2)
+    taskEntry = tk.Entry(goalWindow)
+    taskEntry.place(relx=.2,rely=.2)
     label2 = tk.Label(goalWindow,text="Enter time limit: ", bg= "white").place(relx=.4,rely=.2)
-    secondsEntry = tk.Entry(goalWindow).place(relx=.55,rely=.2,width= 30)
+    secondsEntry = tk.Entry(goalWindow)
+    secondsEntry.place(relx=.55,rely=.2,width= 30)
     label3 = tk.Label(goalWindow,text=" : ",bg="white").place(relx=.59,rely=.2)
-    minsEntry = tk.Entry(goalWindow).place(relx=.61,rely=.2,width=30)
+    minsEntry = tk.Entry(goalWindow)
+    minsEntry.place(relx=.61,rely=.2,width=30)
     label3 = tk.Label(goalWindow,text=" : ",bg="white").place(relx=.64,rely=.2)
-    hoursEntry = tk.Entry(goalWindow).place(relx=.66,rely=.2,width=30)
-    enterButton = tk.Button(goalWindow, text="Enter").place(relx=.4, rely=.3, width=70)
+    hoursEntry = tk.Entry(goalWindow)
+    hoursEntry.place(relx=.66,rely=.2,width=30)
+
+    def clearTextForOtherWindow():
+        taskNameGoal = taskEntry.get()
+        taskSecsGoal = secondsEntry.get()
+        taskMinsGoal = minsEntry.get()
+        taskHoursGoal = hoursEntry.get()
+        nameOfLimit.append(taskNameGoal)
+        secondsLimit.append(taskSecsGoal)
+        minsLimit.append(taskMinsGoal)
+        hoursLimit.append(taskHoursGoal)
+        taskEntry.delete(0, tk.END)
+        secondsEntry.delete(0,tk.END)
+        minsEntry.delete(0,tk.END)
+        hoursEntry.delete(0,tk.END)
+
+    enterButton = tk.Button(goalWindow, text="Enter", command=clearTextForOtherWindow).place(relx=.4, rely=.3, width=70)
 
 
 
@@ -175,6 +203,8 @@ pauseBeginning = 0
 pauseEnd = 0
 pauseTimeDuration = 0
 
+global taskName
+taskName = ""
 
 def setStartTime():
     global timerStarted
@@ -235,13 +265,53 @@ def setEndTime():
     doTick = 0
     endValues.append(endTime)
 
+global y
+y = 0.68
 
+taskDetailsN = tk.Label(text="Name:", background="white")
+taskDetailsN.pack()
+taskDetailsN.place(relx=0.15, rely=y)
+
+taskDetailsST = tk.Label(text="Start Time:", background="white")
+taskDetailsST.pack()
+taskDetailsST.place(relx=0.35, rely=y)
+
+taskDetailsET = tk.Label(text="End Time:", background="white")
+taskDetailsET.pack()
+taskDetailsET.place(relx=0.55, rely=y)
+
+taskDetailsTT = tk.Label(text="Total Time:", background="white")
+taskDetailsTT.pack()
+taskDetailsTT.place(relx=0.75, rely=y)
 def displayOutput():
     # print(taskName + "\t" + time.strftime('%H:%M:%S', time.localtime(startTime)) + "\t" + time.strftime("%H:%M:%S",
     # time.localtime(endTime)) + "\t" + time.strftime("%H:%M:%S", time.gmtime(totalTime)))
+    global y
+    y = y + 0.053
     minutes = totalTime / 60
     hours = minutes / 60
     elapsedTimeTotal.append(minutes)
+    for i in range(0, len(nameOfTasks)):
+        name = nameOfTasks[i]
+        start = time.strftime("%H:%M:%S", time.localtime(startTime))
+        end = time.strftime("%H:%M:%S", time.localtime(endTime))
+        allTime = time.strftime("%H:%M:%S", time.gmtime(totalTime))
+
+        taskN = tk.Label(text=name, background="white")
+        taskN.pack()
+        taskN.place(relx=0.15, rely=y)
+
+        taskST = tk.Label(text=start, background="white")
+        taskST.pack()
+        taskST.place(relx=0.35, rely=y)
+
+        taskET = tk.Label(text=end, background="white")
+        taskET.pack()
+        taskET.place(relx=0.55, rely=y)
+
+        taskTT = tk.Label(text=allTime, background="white")
+        taskTT.pack()
+        taskTT.place(relx=0.75, rely=y)
 
 
 stopButton = tk.Button(
@@ -333,7 +403,7 @@ def clearText():
 time1 = ''
 clock = tk.Label(window, font=('times', 20, 'bold'), bg='white')
 clock.pack()
-clock.place(relx=.328, rely=.7)
+clock.place(relx=.328, rely=.6)
 
 
 def pauseTime(ispaused):
