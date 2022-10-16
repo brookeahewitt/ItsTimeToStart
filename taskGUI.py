@@ -54,6 +54,21 @@ def bargraph():
 
     # root.mainloop()
 
+def clearTextForOtherWindow():
+    global taskNameGoal
+    taskNameGoal = entry.get()
+    if (taskNameGoal == "" or not taskNameGoal.strip()):
+        warningLabel = tk.Label(
+            text="(Please enter task)",
+            foreground="red",
+            background="white",
+        )
+        warningLabel.pack()
+        window.after(1500, warningLabel.destroy)
+
+    #nameOfTasks.append(taskName)
+    entry.delete(0, tk.END)
+
 
 def setGoals():
     goalWindow = tk.Toplevel(window)
@@ -68,6 +83,7 @@ def setGoals():
     minsEntry = tk.Entry(goalWindow).place(relx=.61,rely=.2,width=30)
     label3 = tk.Label(goalWindow,text=" : ",bg="white").place(relx=.64,rely=.2)
     hoursEntry = tk.Entry(goalWindow).place(relx=.66,rely=.2,width=30)
+    enterButton = tk.Button(goalWindow,text="Enter",command=clearTextForOtherWindow).place(relx=.4,rely=.3,width=70)
 
 
 
@@ -84,6 +100,7 @@ def setLimits():
     minsEntry = tk.Entry(goalWindow).place(relx=.61,rely=.2,width=30)
     label3 = tk.Label(goalWindow,text=" : ",bg="white").place(relx=.64,rely=.2)
     hoursEntry = tk.Entry(goalWindow).place(relx=.66,rely=.2,width=30)
+    enterButton = tk.Button(goalWindow, text="Enter").place(relx=.4, rely=.3, width=70)
 
 
 menubar = tk.Menu(window)
