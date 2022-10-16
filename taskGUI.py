@@ -1,10 +1,10 @@
 import tkinter as tk
 import datetime as dt
 import time
-from pandas import DataFrame
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-import numpy as np
+# from pandas import DataFrame
+# import matplotlib.pyplot as plt
+# from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+# import numpy as np
 
 # Tkinter  tutorial link: https://realpython.com/python-gui-tkinter/
 
@@ -17,41 +17,32 @@ window.geometry("800x600")
 window.config(bg = "white")
 
 #Menu Code - Start
-# - https://www.tutorialspoint.com/python/tk_menu.htm
-def donothing():
+# - https://www.tutorialspoint.com/python/tk_menu.htm - menus
+# - https://www.pythontutorial.net/tkinter/tkinter-menu/ - submenus
+def donothing(): #Placeholder Function
    filewin = tk.Toplevel(window)
    button = tk.Button(filewin, text="Do nothing button")
    button.pack()
 
 menubar = tk.Menu(window)
-filemenu = tk.Menu(menubar, tearoff=0)
-filemenu.add_command(label="New", command=donothing)
-filemenu.add_command(label="Open", command=donothing)
-filemenu.add_command(label="Save", command=donothing)
-filemenu.add_command(label="Save as...", command=donothing)
-filemenu.add_command(label="Close", command=donothing)
+optionsmenu = tk.Menu(menubar, tearoff=0)
+sub_menu = tk.Menu(optionsmenu, tearoff=0)
+sub_menu.add_command(label='Pie Graph', command = donothing)
+sub_menu.add_command(label='Bar Graph', command = donothing)
 
-filemenu.add_separator()
+optionsmenu.add_cascade(
+    label="Task Time Graphs",
+    menu=sub_menu
+)
 
-filemenu.add_command(label="Exit", command=window.quit)
-menubar.add_cascade(label="File", menu=filemenu)
-editmenu = tk.Menu(menubar, tearoff=0)
-editmenu.add_command(label="Undo", command=donothing)
+optionsmenu.add_command(label="Task Time Goals")
 
-editmenu.add_separator()
+optionsmenu.add_separator()
 
-editmenu.add_command(label="Cut", command=donothing)
-editmenu.add_command(label="Copy", command=donothing)
-editmenu.add_command(label="Paste", command=donothing)
-editmenu.add_command(label="Delete", command=donothing)
-editmenu.add_command(label="Select All", command=donothing)
+optionsmenu.add_command(label="Exit Program", command=window.quit)
 
-menubar.add_cascade(label="Edit", menu=editmenu)
-helpmenu = tk.Menu(menubar, tearoff=0)
-helpmenu.add_command(label="Help Index", command=donothing)
-helpmenu.add_command(label="About...", command=donothing)
-menubar.add_cascade(label="Help", menu=helpmenu)
 
+menubar.add_cascade(label="Menu", menu=optionsmenu)
 window.config(menu=menubar)
 #Menu Code - End
 
