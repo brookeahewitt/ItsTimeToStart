@@ -1,4 +1,5 @@
 import tkinter as tk
+import datetime as dt
 import time
 
 # Tkinter  tutorial link: https://realpython.com/python-gui-tkinter/
@@ -8,10 +9,10 @@ import time
 window = tk.Tk()
 
 window.title("Timer")  # Temporary Title
-
 window.geometry("800x600")
+window.config(bg = "white")
 
-greeting = tk.Label(text = "Press 'Start Timer' to start logging time.")
+greeting = tk.Label(text = "Press 'Start Timer' to start logging time.", bg = "white")
 greeting.pack()
 
 label = tk.Label(
@@ -21,10 +22,14 @@ label = tk.Label(
 )
 label.pack()
 
+timerStarted = False
 
 def setStartTime():
+    global timerStarted
     global startTime
+    timerStarted = True
     startTime = time.time()
+
 
 
 startButton = tk.Button(
@@ -97,7 +102,7 @@ stopButton = tk.Button(
 stopButton.pack()
 stopButton.place(relx=.6, rely=.5)
 
-askTaskName = tk.Label(text="Enter the name of the task below.")
+askTaskName = tk.Label(text="Enter the name of the task below.", bg = "white")
 entry = tk.Entry()
 
 
@@ -124,6 +129,27 @@ def clearText():
     addCurrentlyWorkingOn()
 
 
+time1 = ''
+clock = tk.Label(window, font=('times', 20, 'bold'), bg='white')
+clock.pack()
+
+
+def tick():
+    global time1
+    # get the current local time from the PC
+    time2 = time.strftime('%H:%M:%S')
+    # if time string has changed, update it
+    if time2 != time1:
+        time1 = time2
+        clock.config(text=time2)
+    # calls itself every 200 milliseconds
+    # to update the time display as needed
+    # could use >200 ms, but display gets jerky
+    clock.after(200, tick)
+
+
+tick()
+
 submitButton = tk.Button(
     text="Submit Task Name",
     width=14,
@@ -139,7 +165,7 @@ submitButton.place(relx=.45, rely=.3)
 
 def addCurrentlyWorkingOn():
     if(not(taskName == "" or not taskName.strip())):
-        currentlyWorkingOn = tk.Label(text="Currently working on: " + taskName)
+        currentlyWorkingOn = tk.Label(text="Currently working on: " + taskName, bg = "white")
     currentlyWorkingOn.pack()
     currentlyWorkingOn.place(relx = .42, rely = .4)
 
