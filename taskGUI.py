@@ -144,7 +144,7 @@ def listGoals():
     goalIndex = goalIndex + 0.053
 
     goalName = nameOfGoalTasks
-    goalTime = str(str(hoursGoal) + ":" + str(minsGoal) +":" + str(secondsGoal))
+    goalTime = str(secondsGoal) + ":" + str(minsGoal) + ":" + str(hoursGoal)
 
     taskName= tk.Label(text=goalName, background="white")
     taskName.pack()
