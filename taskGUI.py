@@ -72,6 +72,14 @@ def bargraph():
     # root.mainloop()
 
 
+global taskNameGoal
+taskNameGoal = "Empty"
+global taskSecsGoal
+taskSecsGoal = 0
+global taskMinsGoal
+taskMinsGoal = 0
+global taskHoursGoal
+taskHoursGoal = 0
 
 
 def setGoals():
@@ -92,7 +100,13 @@ def setGoals():
     hoursEntry = tk.Entry(goalWindow)
     hoursEntry.place(relx=.66,rely=.2,width=30)
 
+
+
     def clearTextForOtherWindow():
+        global taskNameGoal
+        global taskSecsGoal
+        global taskMinsGoal
+        global taskHoursGoal
         taskNameGoal = taskEntry.get()
         taskSecsGoal = secondsEntry.get()
         taskMinsGoal = minsEntry.get()
@@ -109,8 +123,14 @@ def setGoals():
 
     enterButton = tk.Button(goalWindow,text="Enter",command=clearTextForOtherWindow).place(relx=.4,rely=.3,width=70)
 
-
-
+global taskNameLimit
+taskNameLimit = "Empty"
+global taskSecsLimit
+taskSecsLimit = 0
+global taskMinsLimit
+taskMinsLimit = 0
+global taskHoursLimit
+taskHoursLimit = 0
 def setLimits():
     goalWindow = tk.Toplevel(window)
     goalWindow.geometry("800x600")
@@ -130,14 +150,18 @@ def setLimits():
     hoursEntry.place(relx=.66,rely=.2,width=30)
 
     def clearTextForOtherWindow():
-        taskNameGoal = taskEntry.get()
-        taskSecsGoal = secondsEntry.get()
-        taskMinsGoal = minsEntry.get()
-        taskHoursGoal = hoursEntry.get()
-        nameOfLimit.append(taskNameGoal)
-        secondsLimit.append(taskSecsGoal)
-        minsLimit.append(taskMinsGoal)
-        hoursLimit.append(taskHoursGoal)
+        global taskNameLimit
+        global taskSecsLimit
+        global taskMinsLimit
+        global taskHoursLimit
+        taskNameLimit = taskEntry.get()
+        taskSecsLimit = secondsEntry.get()
+        taskMinsLimit = minsEntry.get()
+        taskHoursLimit = hoursEntry.get()
+        nameOfLimit.append(taskNameLimit)
+        secondsLimit.append(taskSecsLimit)
+        minsLimit.append(taskMinsLimit)
+        hoursLimit.append(taskHoursLimit)
         taskEntry.delete(0, tk.END)
         secondsEntry.delete(0,tk.END)
         minsEntry.delete(0,tk.END)
@@ -280,27 +304,27 @@ def displayOutput():
     minutes = totalTime / 60
     hours = minutes / 60
     elapsedTimeTotal.append(minutes)
-    for i in range(0, len(nameOfTasks)):
-        name = nameOfTasks[i]
-        start = time.strftime("%H:%M:%S", time.localtime(startTime))
-        end = time.strftime("%H:%M:%S", time.localtime(endTime))
-        allTime = time.strftime("%H:%M:%S", time.gmtime(totalTime))
+    name = taskName
+    start = time.strftime("%H:%M:%S", time.localtime(startTime))
+    end = time.strftime("%H:%M:%S", time.localtime(endTime))
+    allTime = time.strftime("%H:%M:%S", time.gmtime(totalTime))
 
-        taskN = tk.Label(text=name, background="white")
-        taskN.pack()
-        taskN.place(relx=0.15, rely=y)
+    taskN = tk.Label(text=name, background="white")
+    taskN.pack()
+    taskN.place(relx=0.15, rely=y)
 
-        taskST = tk.Label(text=start, background="white")
-        taskST.pack()
-        taskST.place(relx=0.35, rely=y)
+    taskST = tk.Label(text=start, background="white")
+    taskST.pack()
+    taskST.place(relx=0.35, rely=y)
 
-        taskET = tk.Label(text=end, background="white")
-        taskET.pack()
-        taskET.place(relx=0.55, rely=y)
+    taskET = tk.Label(text=end, background="white")
+    taskET.pack()
+    taskET.place(relx=0.55, rely=y)
 
-        taskTT = tk.Label(text=allTime, background="white")
-        taskTT.pack()
-        taskTT.place(relx=0.75, rely=y)
+    taskTT = tk.Label(text=allTime, background="white")
+    taskTT.pack()
+    taskTT.place(relx=0.75, rely=y)
+
 
 
 stopButton = tk.Button(
