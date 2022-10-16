@@ -509,27 +509,6 @@ data1 = {'Task': taskKeyList,
          'Time in Minutes': minutesValueList
          }
 
-# df1 = DataFrame(data1, columns=['Task', 'Time in Minutes'])
-#
-# root = tk.Tk()
-
-# figure1 = plt.Figure(figsize=(6, 5), dpi=100)
-# ax1 = figure1.add_subplot(111)
-# bar1 = FigureCanvasTkAgg(figure1, root)
-# bar1.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH)
-# df1 = df1[['Task', 'Time in Minutes']].groupby('Task').sum()
-# df1.plot(kind='bar', legend=True, ax=ax1)
-# ax1.set_title('Time Spent Per Task')
 
 window.mainloop()
 
-
-# tk = Tk()
-# frame = Frame(tk, borderwidth=2)
-# frame.pack(fill=BOTH, expand=1)
-# label = Label(frame, text="Button Example")
-# label.pack(fill=X, expand=1)
-#
-# button = Button(frame, text="Exit", command=tk.destroy)
-# button.pack(side=BOTTOM)
-# tk.mainloop()
