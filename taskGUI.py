@@ -35,7 +35,8 @@ endValues = []
 global elapsedTimeTotal
 elapsedTimeTotal = []
 
-#source: https://datatofish.com/matplotlib-charts-tkinter-gui/
+
+# source: https://datatofish.com/matplotlib-charts-tkinter-gui/
 def bargraph():
     data1 = {'Task': nameOfTasks,
              'Time in Minutes': elapsedTimeTotal
@@ -46,30 +47,49 @@ def bargraph():
     figure1 = plt.Figure(figsize=(6, 5), dpi=100)
     ax1 = figure1.add_subplot(111)
     bar1 = FigureCanvasTkAgg(figure1, root)
-    bar1.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand = True)
+    bar1.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True)
     df1 = df1[['Task', 'Time in Minutes']].groupby('Task').sum()
     df1.plot(kind='bar', legend=True, ax=ax1)
     ax1.set_title('Time Spent Per Task')
 
     # root.mainloop()
 
+
 def setGoals():
     goalWindow = tk.Toplevel(window)
     goalWindow.geometry("800x600")
     goalWindow.title("Set Goals")
     goalWindow.config(bg="white")
-    tk.Label(goalWindow, text="New window").pack()
-    secondsEntry = tk.Entry(goalWindow).pack()
-    minsEntry = tk.Entry(goalWindow).pack()
-    hoursEntry = tk.Entry(goalWindow).pack()
+    label1 = tk.Label(goalWindow,text="Enter task name: ", bg="white").place(relx=.05,rely=.2)
+    taskEntry = tk.Entry(goalWindow).place(relx=.2,rely=.2)
+    label2 = tk.Label(goalWindow,text="Enter time goal: ", bg= "white").place(relx=.4,rely=.2)
+    secondsEntry = tk.Entry(goalWindow).place(relx=.55,rely=.2,width= 30)
+    label3 = tk.Label(goalWindow,text=" : ",bg="white").place(relx=.59,rely=.2)
+    minsEntry = tk.Entry(goalWindow).place(relx=.61,rely=.2,width=30)
+    label3 = tk.Label(goalWindow,text=" : ",bg="white").place(relx=.64,rely=.2)
+    hoursEntry = tk.Entry(goalWindow).place(relx=.66,rely=.2,width=30)
 
+
+def setLimits():
+    goalWindow = tk.Toplevel(window)
+    goalWindow.geometry("800x600")
+    goalWindow.title("Set Limits")
+    goalWindow.config(bg="white")
+    label1 = tk.Label(goalWindow,text="Enter task name: ", bg="white").place(relx=.05,rely=.2)
+    taskEntry = tk.Entry(goalWindow).place(relx=.2,rely=.2)
+    label2 = tk.Label(goalWindow,text="Enter time limit: ", bg= "white").place(relx=.4,rely=.2)
+    secondsEntry = tk.Entry(goalWindow).place(relx=.55,rely=.2,width= 30)
+    label3 = tk.Label(goalWindow,text=" : ",bg="white").place(relx=.59,rely=.2)
+    minsEntry = tk.Entry(goalWindow).place(relx=.61,rely=.2,width=30)
+    label3 = tk.Label(goalWindow,text=" : ",bg="white").place(relx=.64,rely=.2)
+    hoursEntry = tk.Entry(goalWindow).place(relx=.66,rely=.2,width=30)
 
 
 menubar = tk.Menu(window)
 optionsmenu = tk.Menu(menubar, tearoff=0)
 sub_menu = tk.Menu(optionsmenu, tearoff=0)
 sub_menu.add_command(label='Set Goals', command=setGoals)
-sub_menu.add_command(label='Set Limits', command=donothing)
+sub_menu.add_command(label='Set Limits', command=setLimits)
 sub_menu.add_command(label='Analyze Goals', command=donothing)
 
 optionsmenu.add_command(label="Task Time Bar Graph", command=bargraph)
