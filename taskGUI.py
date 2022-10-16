@@ -84,6 +84,10 @@ taskHoursGoal = 0
 global goalIndex
 goalIndex = 0.4
 
+global limitIndex
+limitIndex = 0.4
+
+
 def setGoals():
     goalWindow = tk.Toplevel(window)
     goalWindow.geometry("800x600")
@@ -195,6 +199,12 @@ def setLimits():
     label3 = tk.Label(goalWindow,text=" : ",bg="white").place(relx=.64,rely=.2)
     hoursEntry = tk.Entry(goalWindow)
     hoursEntry.place(relx=.66,rely=.2,width=30)
+    taskDetailsName = tk.Label(goalWindow, text="Name: ", background="white")
+    taskDetailsName.pack()
+    taskDetailsName.place(relx=0.15, rely=goalIndex)
+    taskDetailsTime = tk.Label(goalWindow, text="Limit Time: ", background="white")
+    taskDetailsTime.pack()
+    taskDetailsTime.place(relx=0.35, rely=limitIndex)
 
     def clearTextForOtherWindow():
         global taskNameLimit
@@ -213,6 +223,40 @@ def setLimits():
         secondsEntry.delete(0,tk.END)
         minsEntry.delete(0,tk.END)
         hoursEntry.delete(0,tk.END)
+
+        def listLimits():
+            # nameOfGoalTasksLabel
+            # secondsGoalLabel
+            # minsGoalLabel
+            # hoursGoalLabel
+            global limitIndex
+
+            limitIndex = limitIndex + 0.053
+
+            limitName = taskNameLimit
+            limitTime = taskSecsLimit + ":" + taskMinsLimit + ":" + taskHoursLimit
+
+            taskNameL = tk.Label(goalWindow, text=limitName, background="white")
+            taskNameL.pack()
+            taskNameL.place(relx=0.15, rely=limitIndex)
+
+            taskGT = tk.Label(goalWindow,text=limitTime, background="white")
+            taskGT.pack()
+            taskGT.place(relx=0.35, rely=limitIndex)
+
+            # taskDetailsST = tk.Label(text="Goal: ", background="white")
+            # taskDetailsST.pack()
+            # taskDetailsST.place(relx=0.35, rely=y)
+            #
+            # taskDetailsET = tk.Label(text="End Time:", background="white")
+            # taskDetailsET.pack()
+            # taskDetailsET.place(relx=0.55, rely=y)
+            #
+            # taskDetailsTT = tk.Label(text="Total Time:", background="white")
+            # taskDetailsTT.pack()
+            # taskDetailsTT.place(relx=0.75, rely=y)
+
+        listLimits()
 
     enterButton = tk.Button(goalWindow, text="Enter", command=clearTextForOtherWindow).place(relx=.4, rely=.3, width=70)
 
