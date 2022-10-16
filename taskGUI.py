@@ -345,6 +345,7 @@ submitButton = tk.Button(
     fg="white",
     command=clearText
 )
+
 submitButton.pack()
 
 submitButton.place(relx=.43, rely=.3)
