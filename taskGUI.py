@@ -77,7 +77,8 @@ def displayOutput():
     minutes = totalTime / 60
     hours = minutes / 60
     totalTimeLabel = tk.Label(
-        text = "Elapsed time: " + str(round(minutes, 2)) + " minutes.",
+        #text = "Elapsed time: " + str(round(minutes, 2)) + " minutes.",
+        text = "Elapsed time: " + time.strftime("%H:%M:%S", time.gmtime(totalTime)),
         foreground="black",
         background="white"
     )
