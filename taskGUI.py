@@ -222,7 +222,7 @@ def pauseTime():
 
 pauseButton = tk.Button(
     text="Pause Timer",
-    width=10,
+    width=12,
     height=2,
     bg="gold3",
     fg="white",
@@ -328,8 +328,11 @@ submitButton.pack()
 
 submitButton.place(relx=.43, rely=.3)
 
-
+global currentlyWorkingOn
+currentlyWorkingOn = tk.Label(text="", bg = "white")
 def addCurrentlyWorkingOn():
+    global currentlyWorkingOn
+    currentlyWorkingOn.destroy()
     if(not(taskName == "" or not taskName.strip())):
         currentlyWorkingOn = tk.Label(text="Currently working on: " + taskName, bg = "white")
     currentlyWorkingOn.pack()
