@@ -1,6 +1,6 @@
 # It's Time to Start!
 
-Winner of the Girls Who Hack 2022 Best Beginner Award !
+# Winner of the Girls Who Hack 2022 Best Beginner Award!
 
 Authors:
 Hayley Davis,
